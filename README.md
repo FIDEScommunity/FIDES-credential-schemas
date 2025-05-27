@@ -7,8 +7,8 @@ Some of them are copies from other repositories.
 
 ## Repository structure
 
-- `data-schemas/sd-jwt/` — JSON Schemas for credentials that use the SD-JWT VC format
-- `data-schemas/vcdm/` — JSON Schemas for credentials that use the W3C VCDM 2.0 VC format
+- `data-schemas/sd-jwt/` — JSON Schema files for credentials that use the SD-JWT VC format
+- `data-schemas/vcdm/` — JSON Schema files for credentials that use the W3C VCDM 2.0 VC format
 
 ## Status
 
