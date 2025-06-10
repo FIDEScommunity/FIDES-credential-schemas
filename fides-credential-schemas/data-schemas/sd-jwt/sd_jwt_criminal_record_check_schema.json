@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SD-JWT CriminalRecordCheck Claims",
+  "type": "object",
+  "required": [
+    "given_name",
+    "family_name",
+    "date_of_birth",
+    "check_result",
+    "check_type",
+    "jurisdiction",
+    "issued_date"
+  ],
+  "properties": {
+    "given_name": {
+      "type": "string"
+    },
+    "family_name": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "check_result": {
+      "type": "string",
+      "enum": [
+        "Clear",
+        "Not Clear"
+      ],
+      "description": "Result of the background check"
+    },
+    "check_type": {
+      "type": "string",
+      "description": "Type of criminal record check, e.g. Basic"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "Authority that issued the check"
+    },
+    "issued_date": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}

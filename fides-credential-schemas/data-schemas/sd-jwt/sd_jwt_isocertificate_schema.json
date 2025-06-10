@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SD-JWT ISOcertificate Claims",
+  "type": "object",
+  "required": [
+    "id",
+    "organization_name",
+    "certificate_number",
+    "standard",
+    "status",
+    "issue_date",
+    "valid_until",
+    "certifying_body",
+    "accreditation_body",
+    "country",
+    "scope"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri"
+    },
+    "organization_name": {
+      "type": "string"
+    },
+    "certificate_number": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Valid",
+        "Expired",
+        "Suspended",
+        "Withdrawn"
+      ]
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "valid_until": {
+      "type": "string",
+      "format": "date"
+    },
+    "certifying_body": {
+      "type": "string"
+    },
+    "accreditation_body": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    }
+  }
+}

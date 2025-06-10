@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SD-JWT HigherEducationDiploma Claims",
+  "type": "object",
+  "required": [
+    "given_name",
+    "family_name",
+    "date_of_birth",
+    "awarding_date",
+    "learning_achievement",
+    "eqf_level",
+    "awarding_body"
+  ],
+  "properties": {
+    "given_name": {
+      "type": "string"
+    },
+    "family_name": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "awarding_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "learning_achievement": {
+      "type": "string",
+      "description": "Type of diploma awarded, e.g. Master International Law"
+    },
+    "eqf_level": {
+      "type": "string",
+      "enum": [
+        "Level 1",
+        "Level 2",
+        "Level 3",
+        "Level 4",
+        "Level 5",
+        "Level 6",
+        "Level 7",
+        "Level 8"
+      ]
+    },
+    "awarding_body": {
+      "type": "string"
+    }
+  }
+}

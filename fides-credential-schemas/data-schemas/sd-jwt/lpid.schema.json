@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Legal Person Identification Data (LPID)",
+  "description": "Schema for Legal PID",
+  "type": "object",
+  "properties": {
+    "issuing_authority": {
+      "description": "Name of issuer from the MS that issued the ODI instance",
+      "type": "string"
+    },
+    "issuing_authority_id": {
+      "description": "ODI Id of the issuing authority. (Business register identifier for BRIS)",
+      "type": "string"
+    },
+    "issuing_country": {
+      "description": "Alpha-2 country code, as defined in ISO 3166-1, of the issuing country or territory.",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "issuing_jurisdiction": {
+      "description": "As defined in ISO 3166-2:2020, of the issuing country or territory.",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 6
+    },
+    "issuance_date": {
+      "description": "Date and possibly time of issuance",
+      "type": "string",
+      "format": "datetime"
+    },
+    "expiry_date": {
+      "description": "Date and possibly time of ODI expiration",
+      "format": "datetime"
+    },
+    "authentic_source_id": {
+      "description": "ODI Id of the issuing authority. (Business register identifier for BRIS)",
+      "type": "string"
+    },
+    "authentic_source_name": {
+      "description": "Name of issuer from the MS that issued the ODI instance",
+      "type": "string"
+    },
+    "legal_person_id": {
+      "description": "Unique id for organisation according to EUID",
+      "type": "string"
+    },
+    "legal_person_name": {
+      "description": "Legal person name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "legal_person_id",
+    "legal_person_name",
+    "issuing_authority",
+    "issuing_authority_id",
+    "issuer_country",
+    "issuance_date",
+    "expiry_date"
+  ],
+}
