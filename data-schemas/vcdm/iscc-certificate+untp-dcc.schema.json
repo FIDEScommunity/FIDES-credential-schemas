@@ -6,7 +6,6 @@
   "description": "Conformity Credential per UNTP DCC with ISCC-specific extensions for fuel supply chains.",
   "type": "object",
   "additionalProperties": true,
-
   "required": [
     "certificateId",
     "assessedParty",
@@ -16,9 +15,7 @@
     "certificateNumber",
     "scheme"
   ],
-
   "properties": {
-    /* ---------- UNTP DCC basis ---------- */
     "certificateId": {
       "type": "string",
       "title": "Certificate ID",
@@ -70,8 +67,6 @@
       "title": "Document reference (URL)",
       "examples": ["https://example.org/docs/DCC-2025-000123.pdf"]
     },
-
-    /* ---------- ISCC extensies ---------- */
     "certificateNumber": {
       "type": "string",
       "title": "ISCC Certificate Number",
