@@ -1,43 +1,30 @@
 {
-  "@context": {
-    "@version": 1.1,
-    "@protected": true,
-
-    "vc": "https://www.w3.org/ns/credentials/v2",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "schema": "https://schema.org/",
-
-    /* UNTP vocabularies (basis DCC-termen) */
-    "untp-core": "https://test.uncefact.org/vocabulary/untp/core/0/",
-    "untp-dcc": "https://test.uncefact.org/vocabulary/untp/dcc/0/",
-
-    /* Jouw ISCC vocab */
-    "iscc": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld#",
-
-    /* UNTP DCC klasse en kernvelden */
-    "ConformityCredential": "untp-dcc:ConformityCredential",
-    "certificateId": "untp-dcc:certificateId",
-    "assessedParty": { "@id": "untp-dcc:assessedParty", "@type": "@id" },
-    "conformityAssessmentBody": { "@id": "untp-dcc:conformityAssessmentBody", "@type": "@id" },
-    "referenceStandard": "untp-dcc:referenceStandard",
-    "conformityScope": "untp-dcc:conformityScope",
-    "validFrom": { "@id": "untp-core:validFrom", "@type": "xsd:date" },
-    "validUntil": { "@id": "untp-core:validUntil", "@type": "xsd:date" },
-    "documentReference": { "@id": "untp-core:documentReference", "@type": "@id" },
-
-    /* ISCC extensies uit jouw vocab */
-    "ISCCCertificate": "iscc:ISCCCertificate",
-    "certificateNumber": "iscc:certificateNumber",
-    "scheme": "iscc:scheme",
-    "certificateType": "iscc:certificateType",
-    "siteCountry": "iscc:siteCountry",
-    "scope": "iscc:scope",
-    "reference": { "@id": "iscc:reference", "@type": "@id" },
-
-    /* Optioneel: org-attributen als je ooit embedded objects gebruikt */
-    "Organization": "schema:Organization",
-    "legalName": "schema:legalName",
-    "vatId": "iscc:vatId",
-    "lei": "iscc:lei"
-  }
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    {
+      "@version": 1.1,
+      "@protected": true,
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "schema": "https://schema.org/",
+      "untp-core": "https://test.uncefact.org/vocabulary/untp/core/0/",
+      "untp-dcc": "https://test.uncefact.org/vocabulary/untp/dcc/0/",
+      "iscc": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld#",
+      "ISCCCertificate": "iscc:ISCCCertificate",
+      "certificateNumber": "untp-dcc:certificateId",
+      "certifiedParty": { "@id": "untp-dcc:assessedParty", "@type": "@id" },
+      "cab": { "@id": "untp-dcc:conformityAssessmentBody", "@type": "@id" },
+      "scheme": "iscc:scheme",
+      "certificateType": "iscc:certificateType",
+      "scope": "untp-dcc:conformityScope",
+      "siteCountry": "iscc:siteCountry",
+      "validFrom": { "@id": "untp-core:validFrom", "@type": "xsd:date" },
+      "validUntil": { "@id": "untp-core:validUntil", "@type": "xsd:date" },
+      "reference": { "@id": "untp-core:documentReference", "@type": "@id" },
+      "Organization": "schema:Organization",
+      "legalName": "schema:legalName",
+      "vatId": "iscc:vatId",
+      "lei": "iscc:lei"
+    }
+  ]
 }
+
