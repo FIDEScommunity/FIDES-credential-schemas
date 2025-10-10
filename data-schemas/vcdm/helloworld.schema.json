@@ -5,7 +5,7 @@
   "title": "HelloWorld Credential Subject",
   "description": "JSON Schema for the credentialSubject of HelloWorldCred (firstname, lastname).",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "firstname": {
       "type": "string",
