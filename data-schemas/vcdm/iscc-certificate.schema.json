@@ -37,27 +37,37 @@
     },
 
     "certifiedParty": {
-      "type": "object",
       "title": "Certified Organization",
-      "required": ["legalName"],
-      "additionalProperties": true,
-      "properties": {
-        "legalName": {
-          "type": "string",
-          "title": "Legal name",
-          "examples": ["Van Kessel Olie B.V."]
+      "anyOf": [
+        {
+          "type": "object",
+          "required": ["legalName"],
+          "additionalProperties": true,
+          "properties": {
+            "legalName": {
+              "type": "string",
+              "title": "Legal name",
+              "examples": ["Van Kessel Olie B.V."]
+            },
+            "vatId": {
+              "type": "string",
+              "title": "VAT ID",
+              "examples": ["NL123456789B01"]
+            },
+            "lei": {
+              "type": "string",
+              "title": "LEI",
+              "examples": ["724500XXXXXXXXXXXXXX"]
+            }
+          }
         },
-        "vatId": {
+        {
           "type": "string",
-          "title": "VAT ID",
-          "examples": ["NL123456789B01"]
-        },
-        "lei": {
-          "type": "string",
-          "title": "LEI",
-          "examples": ["724500XXXXXXXXXXXXXX"]
+          "format": "uri",
+          "title": "Certified Organization (URI/DID)",
+          "examples": ["did:web:van-kessel.nl", "https://bluepages.example.org/org/van-kessel"]
         }
-      }
+      ]
     },
 
     "scope": {
@@ -88,22 +98,32 @@
     },
 
     "cab": {
-      "type": "object",
       "title": "Conformity Assessment Body",
-      "required": ["legalName"],
-      "additionalProperties": true,
-      "properties": {
-        "legalName": {
-          "type": "string",
-          "title": "CAB Name",
-          "examples": ["Control Union Certifications B.V."]
+      "anyOf": [
+        {
+          "type": "object",
+          "required": ["legalName"],
+          "additionalProperties": true,
+          "properties": {
+            "legalName": {
+              "type": "string",
+              "title": "CAB Name",
+              "examples": ["Control Union Certifications B.V."]
+            },
+            "accreditationId": {
+              "type": "string",
+              "title": "Accreditation ID",
+              "examples": ["CUC-NL-0001"]
+            }
+          }
         },
-        "accreditationId": {
+        {
           "type": "string",
-          "title": "Accreditation ID",
-          "examples": ["CUC-NL-0001"]
+          "format": "uri",
+          "title": "CAB (URI/DID)",
+          "examples": ["did:web:control-union.example", "https://bluepages.example.org/cab/control-union"]
         }
-      }
+      ]
     },
 
     "reference": {
