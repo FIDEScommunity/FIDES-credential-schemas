@@ -1,0 +1,35 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+
+    "vc": "https://www.w3.org/ns/credentials/v2",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "iscc": "https://fidescommunity.github.io/vocab/iscc.vocab.jsonld#",
+
+    "ISCCCertificate": "iscc:ISCCCertificate",
+
+    "certificateNumber": "iscc:certificateNumber",
+    "scheme": "iscc:scheme",
+    "certificateType": "iscc:certificateType",
+    "scope": "iscc:scope",
+    "siteCountry": "iscc:siteCountry",
+
+    "validFrom": { "@id": "iscc:validFrom", "@type": "xsd:date" },
+    "validUntil": { "@id": "iscc:validUntil", "@type": "xsd:date" },
+
+    "reference": { "@id": "iscc:reference", "@type": "@id" },
+
+    "certifiedParty": { "@id": "iscc:certifiedParty", "@type": "@id" },
+    "cab": { "@id": "iscc:cab", "@type": "@id" },
+
+    "Organization": "schema:Organization",
+    "name": "schema:name",
+    "legalName": "schema:legalName",
+
+    "vatId": "iscc:vatId",
+    "lei": "iscc:lei",
+    "accreditationId": "iscc:accreditationId"
+  }
+}
