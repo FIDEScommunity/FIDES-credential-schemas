@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/data-schemas/vcdm/helloworld.schema.json",
+  "title": "HelloWorld Credential Subject",
+  "description": "JSON Schema for the credentialSubject of HelloWorldCred (firstname, lastname).",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "firstname": {
+      "type": "string",
+      "title": "First name",
+      "examples": ["Harmen"],
+      "minLength": 1
+    },
+    "lastname": {
+      "type": "string",
+      "title": "Last name",
+      "examples": ["van der Kooij"],
+      "minLength": 1
+    }
+  },
+  "required": ["firstname", "lastname"]
+}
