@@ -4,6 +4,7 @@
     {
       "@version": 1.1,
       "@protected": true,
+
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "schema": "https://schema.org/",
       "untp-core": "https://test.uncefact.org/vocabulary/untp/core/0/",
@@ -12,33 +13,27 @@
 
       "ISCCCertificate": "iscc:ISCCCertificate",
 
-      "certificateNumber": "untp-dcc:certificateId",
-      "certificateId": "untp-dcc:certificateId",
-
-      "certifiedParty": { "@id": "untp-dcc:assessedParty", "@type": "@id" },
-      "assessedParty":  { "@id": "untp-dcc:assessedParty", "@type": "@id" },
-
-      "cab": { "@id": "untp-dcc:conformityAssessmentBody", "@type": "@id" },
-      "conformityAssessmentBody": { "@id": "untp-dcc:conformityAssessmentBody", "@type": "@id" },
-
-      "scope": "untp-dcc:conformityScope",
-      "conformityScope": "untp-dcc:conformityScope",
-
-      "reference": { "@id": "untp-core:documentReference", "@type": "@id" },
-      "documentReference": { "@id": "untp-core:documentReference", "@type": "@id" },
-
+      /* ISCC surface keys → ISCC IRIs (provenance-first) */
+      "certificateNumber": "iscc:certificateNumber",
+      "certifiedParty": { "@id": "iscc:certifiedParty", "@type": "@id" },
+      "cab": { "@id": "iscc:cab", "@type": "@id" },
       "scheme": "iscc:scheme",
       "certificateType": "iscc:certificateType",
+      "scope": "iscc:scope",
       "siteCountry": "iscc:siteCountry",
+      "validFrom": { "@id": "iscc:validFrom", "@type": "xsd:date" },
+      "validUntil": { "@id": "iscc:validUntil", "@type": "xsd:date" },
+      "reference": { "@id": "iscc:reference", "@type": "@id" },
 
-      "validFrom":  { "@id": "untp-core:validFrom",  "@type": "xsd:date" },
-      "validUntil": { "@id": "untp-core:validUntil", "@type": "xsd:date" },
+      /* UNTP interoperabiliteit (aliassen, geen extra invoervelden nodig) */
+      "certificateId": "untp-dcc:certificateId",
+      "assessedParty": { "@id": "untp-dcc:assessedParty", "@type": "@id" },
+      "conformityAssessmentBody": { "@id": "untp-dcc:conformityAssessmentBody", "@type": "@id" },
+      "conformityScope": "untp-dcc:conformityScope",
+      "documentReference": { "@id": "untp-core:documentReference", "@type": "@id" },
 
-      "Organization": "schema:Organization",
-      "legalName": "schema:legalName",
-      "vatId": "iscc:vatId",
-      "lei": "iscc:lei"
+      /* UNTP-specifiek veld dat geen directe ISCC-tegenhanger heeft */
+      "referenceStandard": "untp-dcc:referenceStandard"
     }
   ]
 }
-
