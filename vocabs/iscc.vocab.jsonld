@@ -10,43 +10,106 @@
 
   "@id": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld",
   "rdfs:label": "ISCC Vocabulary (basic example)",
-  "rdfs:comment": "Minimal vocabulary for ISCC-related credentials. Includes PoS ID, chain of custody model, feedstock type, GHG intensity, and certification body.",
+  "rdfs:comment": "Minimal vocabulary for ISCC-related credentials. Includes certificate core terms, parties, scope, validity, and additional ISCC data terms.",
 
   "@graph": [
+    {
+      "@id": "iscc:ISCCCertificate",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ISCC Certificate",
+      "rdfs:comment": "A sustainability/conformity certificate under an ISCC scheme (e.g., ISCC EU, ISCC PLUS, ISCC CORSIA)."
+    },
+
+    { "@id": "iscc:certificateNumber", "@type": "rdf:Property",
+      "rdfs:label": "Certificate number",
+      "rdfs:comment": "Unique ISCC certificate identifier assigned by a CAB.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:string"
+    },
+    { "@id": "iscc:scheme", "@type": "rdf:Property",
+      "rdfs:label": "ISCC scheme",
+      "rdfs:comment": "ISCC scheme of the certificate (e.g., ISCC EU, ISCC PLUS, ISCC CORSIA).",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:string"
+    },
+    { "@id": "iscc:certificateType", "@type": "rdf:Property",
+      "rdfs:label": "Certificate type",
+      "rdfs:comment": "Type/category of the ISCC certificate.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:string"
+    },
+    { "@id": "iscc:certifiedParty", "@type": "rdf:Property",
+      "rdfs:label": "Certified party",
+      "rdfs:comment": "Organization to which the certificate is issued.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "schema:Organization"
+    },
+    { "@id": "iscc:cab", "@type": "rdf:Property",
+      "rdfs:label": "Conformity Assessment Body",
+      "rdfs:comment": "Accredited CAB that issued the certificate.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "schema:Organization"
+    },
+    { "@id": "iscc:scope", "@type": "rdf:Property",
+      "rdfs:label": "Certified scope",
+      "rdfs:comment": "Scope/activities covered (e.g., trading, distribution, mass balance).",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:string"
+    },
+    { "@id": "iscc:siteCountry", "@type": "rdf:Property",
+      "rdfs:label": "Country (ISO 3166-1 alpha-2)",
+      "rdfs:comment": "Country code where the certified site operates.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:string"
+    },
+    { "@id": "iscc:validFrom", "@type": "rdf:Property",
+      "rdfs:label": "Valid from",
+      "rdfs:comment": "Certificate validity start date.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:date"
+    },
+    { "@id": "iscc:validUntil", "@type": "rdf:Property",
+      "rdfs:label": "Valid until",
+      "rdfs:comment": "Certificate validity end date.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:date"
+    },
+    { "@id": "iscc:reference", "@type": "rdf:Property",
+      "rdfs:label": "Reference URL",
+      "rdfs:comment": "Public URL for the certificate artifact or registry page.",
+      "rdfs:domain": "iscc:ISCCCertificate",
+      "rdfs:range": "xsd:anyURI"
+    },
+
+    /* Additional ISCC-related data terms (generic, optional in certificates) */
     {
       "@id": "iscc:posId",
       "rdfs:label": "PoS ID",
       "rdfs:comment": "Identifier of an ISCC Proof of Sustainability (PoS) certificate or document.",
-      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:range": "xsd:string",
       "owl:equivalentProperty": { "@id": "schema:identifier" }
     },
     {
       "@id": "iscc:cocModel",
       "rdfs:label": "Chain of Custody Model",
-      "rdfs:comment": "Chain of custody model applicable to the material (e.g., MassBalance, Segregation, BookAndClaim).",
-      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:comment": "Chain of custody model (e.g., MassBalance, Segregation, BookAndClaim).",
+      "rdfs:range": "xsd:string",
       "owl:equivalentProperty": { "@id": "schema:category" }
     },
     {
       "@id": "iscc:feedstockType",
       "rdfs:label": "Feedstock Type",
       "rdfs:comment": "Type of biomass or renewable input (e.g., UCO, POME, Tallow, Corn).",
-      "rdfs:range": { "@id": "xsd:string" },
+      "rdfs:range": "xsd:string",
       "owl:equivalentProperty": { "@id": "schema:material" }
     },
     {
       "@id": "iscc:ghgIntensity",
       "rdfs:label": "GHG Intensity (gCO2e/MJ)",
-      "rdfs:comment": "Greenhouse gas emission intensity associated with the product system, expressed in grams CO2-equivalent per megajoule.",
-      "rdfs:range": { "@id": "xsd:decimal" },
+      "rdfs:comment": "GHG emission intensity associated with the product system, in grams CO2e per MJ.",
+      "rdfs:range": "xsd:decimal",
       "owl:equivalentProperty": { "@id": "schema:value" }
-    },
-    {
-      "@id": "iscc:certificationBody",
-      "rdfs:label": "Certification Body",
-      "rdfs:comment": "Name or identifier of the accredited Certification Body (CAB) that issued or audited the ISCC certification.",
-      "rdfs:range": { "@id": "xsd:string" },
-      "owl:equivalentProperty": { "@id": "schema:provider" }
     }
   ]
 }
+
