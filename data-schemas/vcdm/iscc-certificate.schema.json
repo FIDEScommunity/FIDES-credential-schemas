@@ -37,37 +37,10 @@
     },
 
     "certifiedParty": {
-      "title": "Certified Organization",
-      "anyOf": [
-        {
-          "type": "object",
-          "required": ["legalName"],
-          "additionalProperties": true,
-          "properties": {
-            "legalName": {
-              "type": "string",
-              "title": "Legal name",
-              "examples": ["Van Kessel Olie B.V."]
-            },
-            "vatId": {
-              "type": "string",
-              "title": "VAT ID",
-              "examples": ["NL123456789B01"]
-            },
-            "lei": {
-              "type": "string",
-              "title": "LEI",
-              "examples": ["724500XXXXXXXXXXXXXX"]
-            }
-          }
-        },
-        {
-          "type": "string",
-          "format": "uri",
-          "title": "Certified Organization (URI/DID)",
-          "examples": ["did:web:van-kessel.nl", "https://bluepages.example.org/org/van-kessel"]
-        }
-      ]
+      "type": "string",
+      "title": "Certified Organization (name, DID or URL)",
+      "description": "Enter an organization name, DID (e.g., did:web:example.org) or URL to a profile.",
+      "examples": ["Van Kessel Olie B.V.", "did:web:van-kessel.nl", "https://bluepages.example.org/org/van-kessel"]
     },
 
     "scope": {
@@ -98,32 +71,10 @@
     },
 
     "cab": {
-      "title": "Conformity Assessment Body",
-      "anyOf": [
-        {
-          "type": "object",
-          "required": ["legalName"],
-          "additionalProperties": true,
-          "properties": {
-            "legalName": {
-              "type": "string",
-              "title": "CAB Name",
-              "examples": ["Control Union Certifications B.V."]
-            },
-            "accreditationId": {
-              "type": "string",
-              "title": "Accreditation ID",
-              "examples": ["CUC-NL-0001"]
-            }
-          }
-        },
-        {
-          "type": "string",
-          "format": "uri",
-          "title": "CAB (URI/DID)",
-          "examples": ["did:web:control-union.example", "https://bluepages.example.org/cab/control-union"]
-        }
-      ]
+      "type": "string",
+      "title": "Conformity Assessment Body (name, DID or URL)",
+      "description": "Enter a CAB name, DID (e.g., did:web:cab.example) or URL to a profile.",
+      "examples": ["Control Union Certifications B.V.", "did:web:control-union.example", "https://bluepages.example.org/cab/control-union"]
     },
 
     "reference": {
