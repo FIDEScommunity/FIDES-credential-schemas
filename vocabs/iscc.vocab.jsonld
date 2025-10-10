@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "schema": "https://schema.org/",
+    "iscc": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld#"
+  },
+
+  "@id": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld",
+  "rdfs:label": "ISCC Vocabulary (basic example)",
+  "rdfs:comment": "Minimal vocabulary for ISCC-related credentials. Includes PoS ID, chain of custody model, feedstock type, GHG intensity, and certification body.",
+
+  "@graph": [
+    {
+      "@id": "iscc:posId",
+      "rdfs:label": "PoS ID",
+      "rdfs:comment": "Identifier of an ISCC Proof of Sustainability (PoS) certificate or document.",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:identifier" }
+    },
+    {
+      "@id": "iscc:cocModel",
+      "rdfs:label": "Chain of Custody Model",
+      "rdfs:comment": "Chain of custody model applicable to the material (e.g., MassBalance, Segregation, BookAndClaim).",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:category" }
+    },
+    {
+      "@id": "iscc:feedstockType",
+      "rdfs:label": "Feedstock Type",
+      "rdfs:comment": "Type of biomass or renewable input (e.g., UCO, POME, Tallow, Corn).",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:material" }
+    },
+    {
+      "@id": "iscc:ghgIntensity",
+      "rdfs:label": "GHG Intensity (gCO2e/MJ)",
+      "rdfs:comment": "Greenhouse gas emission intensity associated with the product system, expressed in grams CO2-equivalent per megajoule.",
+      "rdfs:range": { "@id": "xsd:decimal" },
+      "owl:equivalentProperty": { "@id": "schema:value" }
+    },
+    {
+      "@id": "iscc:certificationBody",
+      "rdfs:label": "Certification Body",
+      "rdfs:comment": "Name or identifier of the accredited Certification Body (CAB) that issued or audited the ISCC certification.",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:provider" }
+    }
+  ]
+}
