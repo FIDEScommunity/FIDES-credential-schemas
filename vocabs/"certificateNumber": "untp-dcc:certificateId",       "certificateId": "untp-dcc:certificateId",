@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+
+    "iscc": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld#",
+    "redcert": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/redcert.vocab.jsonld#",
+
+    "untp-core": "https://test.uncefact.org/vocabulary/untp/core/0/",
+    "untp-dcc": "https://test.uncefact.org/vocabulary/untp/dcc/0/"
+  },
+
+  "@id": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/mappings/cf-vocab-mapping.v1.jsonld",
+  "@type": "owl:Ontology",
+  "rdfs:label": "Clean Fuel – Vocab Mapping (v1, OWL-only)",
+  "rdfs:comment": "OWL-equivalences for the minimum CF scope. Maps ISCC↔UNTP and REDcert↔UNTP core certificate terms; no new terms defined.",
+  "dct:publisher": { "@id": "https://clean-fuel-protocol.org" },
+  "dct:license": { "@id": "https://creativecommons.org/licenses/by/4.0/" },
+  "dct:issued": "2025-10-10",
+  "dct:modified": "2025-10-10",
+
+  "@graph": [
+    /* ---------- ISCC ↔ UNTP ---------- */
+    { "@id": "iscc:certificateNumber", "owl:equivalentProperty": { "@id": "untp-dcc:certificateId" } },
+    { "@id": "iscc:certifiedParty",   "owl:equivalentProperty": { "@id": "untp-dcc:assessedParty" } },
+    { "@id": "iscc:cab",              "owl:equivalentProperty": { "@id": "untp-dcc:conformityAssessmentBody" } },
+    { "@id": "iscc:scope",            "owl:equivalentProperty": { "@id": "untp-dcc:conformityScope" } },
+    { "@id": "iscc:reference",        "owl:equivalentProperty": { "@id": "untp-core:documentReference" } },
+    { "@id": "iscc:validFrom",        "owl:equivalentProperty": { "@id": "untp-core:validFrom" } },
+    { "@id": "iscc:validUntil",       "owl:equivalentProperty": { "@id": "untp-core:validUntil" } },
+
+    /* ---------- REDcert ↔ UNTP ---------- */
+    { "@id": "redcert:certificateNumber", "owl:equivalentProperty": { "@id": "untp-dcc:certificateId" } },
+    { "@id": "redcert:certifiedParty",   "owl:equivalentProperty": { "@id": "untp-dcc:assessedParty" } },
+    { "@id": "redcert:cab",              "owl:equivalentProperty": { "@id": "untp-dcc:conformityAssessmentBody" } },
+    { "@id": "redcert:scope",            "owl:equivalentProperty": { "@id": "untp-dcc:conformityScope" } },
+    { "@id": "redcert:reference",        "owl:equivalentProperty": { "@id": "untp-core:documentReference" } },
+    { "@id": "redcert:validFrom",        "owl:equivalentProperty": { "@id": "untp-core:validFrom" } },
+    { "@id": "redcert:validUntil",       "owl:equivalentProperty": { "@id": "untp-core:validUntil" } }
+  ]
+}
