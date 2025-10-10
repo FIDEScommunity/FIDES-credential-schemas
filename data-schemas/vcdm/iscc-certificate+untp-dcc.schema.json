@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/data-schemas/vcdm/iscc-certificate+untp-dcc.schema.json",
-  "$comment": "ISCC surface names; UNTP semantics via contexts/iscc-certificate+untp-dcc.context.jsonld (aliases map ISCC fields to UNTP IRIs).",
+  "$comment": "ISCC surface names; UNTP semantics via contexts/iscc-certificate+untp-dcc.context.jsonld and cf-vocab-mapping.v1.jsonld.",
   "title": "ISCC Certificate – UNTP-mapped (CredentialSubject)",
   "type": "object",
   "additionalProperties": true,
@@ -18,12 +18,12 @@
   "properties": {
     "certificateNumber": {
       "type": "string",
-      "title": "ISCC Certificate Number (→ UNTP certificateId)",
+      "title": "ISCC Certificate Number (→ UNTP DCC certificateId)",
       "examples": ["ISCC-EU-PL-123456789"]
     },
     "certifiedParty": {
       "type": "string",
-      "title": "Certified Organization (name, DID or URL)",
+      "title": "Certified Organization (→ UNTP DCC assessedParty) — name, DID or URL",
       "examples": [
         "Van Kessel Olie B.V.",
         "did:web:van-kessel.nl",
@@ -32,7 +32,7 @@
     },
     "cab": {
       "type": "string",
-      "title": "Conformity Assessment Body (name, DID or URL)",
+      "title": "Conformity Assessment Body (→ UNTP DCC conformityAssessmentBody) — name, DID or URL",
       "examples": [
         "Control Union Certifications B.V.",
         "did:web:control-union.example",
@@ -47,12 +47,11 @@
     },
     "certificateType": {
       "type": "string",
-      "title": "Certificate Type",
-      "examples": ["Sustainability Certification"]
+      "title": "Certificate Type"
     },
     "scope": {
       "type": "string",
-      "title": "Conformity/Certified Scope (→ UNTP conformityScope)",
+      "title": "Conformity/Certified Scope (→ UNTP DCC conformityScope)",
       "examples": ["Trading and distribution of biofuels (mass balance)"]
     },
     "siteCountry": {
@@ -64,25 +63,24 @@
     "validFrom": {
       "type": "string",
       "format": "date",
-      "title": "Valid from",
+      "title": "Valid from (→ UNTP Core validFrom)",
       "examples": ["2025-01-15"]
     },
     "validUntil": {
       "type": "string",
       "format": "date",
-      "title": "Valid until",
+      "title": "Valid until (→ UNTP Core validUntil)",
       "examples": ["2026-01-14"]
     },
     "reference": {
       "type": "string",
       "format": "uri",
-      "title": "Public certificate / document URL (→ UNTP documentReference)",
+      "title": "Public certificate / document URL (→ UNTP Core documentReference)",
       "examples": ["https://iscc-system.org/certificates/ISCC-EU-PL-123456789.pdf"]
     },
-
     "referenceStandard": {
       "type": "string",
-      "title": "Reference Standard (UNTP)",
+      "title": "Reference Standard (UNTP DCC)",
       "examples": ["ISCC EU 4.0", "ISO 14064-1", "RED II Annex V/VI"]
     }
   }
