@@ -1,0 +1,11 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ex": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/helloworld.vocab.jsonld#",
+    "firstname": { "@id": "ex:firstname", "@type": "xsd:string" },
+    "lastname": { "@id": "ex:lastname", "@type": "xsd:string" }
+  }
+}
