@@ -24,12 +24,20 @@
     "certifiedParty": {
       "type": "string",
       "title": "Certified Organization (name, DID or URL)",
-      "examples": ["Van Kessel Olie B.V.","did:web:van-kessel.nl","https://bluepages.example.org/org/van-kessel"]
+      "examples": [
+        "Van Kessel Olie B.V.",
+        "did:web:van-kessel.nl",
+        "https://bluepages.example.org/org/van-kessel"
+      ]
     },
     "cab": {
       "type": "string",
       "title": "Conformity Assessment Body (name, DID or URL)",
-      "examples": ["Control Union Certifications B.V.","did:web:control-union.example","https://bluepages.example.org/cab/control-union"]
+      "examples": [
+        "Control Union Certifications B.V.",
+        "did:web:control-union.example",
+        "https://bluepages.example.org/cab/control-union"
+      ]
     },
     "scheme": {
       "type": "string",
@@ -72,7 +80,6 @@
       "examples": ["https://iscc-system.org/certificates/ISCC-EU-PL-123456789.pdf"]
     },
 
-    /* UNTP veld zonder ISCC-dubbel (bewust behouden) */
     "referenceStandard": {
       "type": "string",
       "title": "Reference Standard (UNTP)",
