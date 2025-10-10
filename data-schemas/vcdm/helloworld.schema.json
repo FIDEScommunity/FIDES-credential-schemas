@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/data-schemas/vcdm/helloworld.schema.json",
   "$comment": "Semantics: https://fidescommunity.github.io/FIDES-credential-schemas/contexts/helloworld.context.jsonld",
   "title": "HelloWorld Credential Subject",
