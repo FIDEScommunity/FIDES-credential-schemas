@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "schema": "https://schema.org/",
+    "ex": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/helloworld.vocab.jsonld#"
+  },
+  "@id": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/helloworld.vocab.jsonld",
+  "rdfs:label": "FIDES HelloWorld Vocabulary",
+  "rdfs:comment": "Minimal vocabulary for demo credentials with 'firstname' and 'lastname'.",
+  "@graph": [
+    {
+      "@id": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/helloworld.vocab.jsonld#firstname",
+      "rdfs:label": "First name",
+      "rdfs:comment": "A person's given name.",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:givenName" }
+    },
+    {
+      "@id": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/helloworld.vocab.jsonld#lastname",
+      "rdfs:label": "Last name",
+      "rdfs:comment": "A person's family/surname.",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:familyName" }
+    }
+  ]
+}
