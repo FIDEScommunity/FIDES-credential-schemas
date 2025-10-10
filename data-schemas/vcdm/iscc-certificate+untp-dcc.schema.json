@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/data-schemas/vcdm/iscc-certificate+untp-dcc.schema.json",
+  "$comment": "UNTP DCC core + ISCC extensions. Semantics via UNTP vocabs and https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld; context at https://fidescommunity.github.io/FIDES-credential-schemas/contexts/iscc-certificate+untp-dcc.context.jsonld",
+  "title": "UNTP DCC – ISCC Certificate (CredentialSubject)",
+  "description": "Conformity Credential per UNTP DCC with ISCC-specific extensions for fuel supply chains.",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "certificateId",
+    "assessedParty",
+    "conformityAssessmentBody",
+    "validFrom",
+    "validUntil",
+    "certificateNumber",
+    "scheme"
+  ],
+
+  "properties": {
+    /* ---------- UNTP DCC basis ---------- */
+    "certificateId": {
+      "type": "string",
+      "title": "Certificate ID",
+      "examples": ["DCC-2025-000123"]
+    },
+    "assessedParty": {
+      "type": "string",
+      "title": "Assessed Party (name, DID or URL)",
+      "examples": [
+        "Van Kessel Olie B.V.",
+        "did:web:van-kessel.nl",
+        "https://bluepages.example.org/org/van-kessel"
+      ]
+    },
+    "conformityAssessmentBody": {
+      "type": "string",
+      "title": "Conformity Assessment Body (name, DID or URL)",
+      "examples": [
+        "Control Union Certifications B.V.",
+        "did:web:control-union.example",
+        "https://bluepages.example.org/cab/control-union"
+      ]
+    },
+    "referenceStandard": {
+      "type": "string",
+      "title": "Reference Standard",
+      "examples": ["ISCC EU 4.0", "ISO 14064-1", "RED II Annex V/VI"]
+    },
+    "conformityScope": {
+      "type": "string",
+      "title": "Conformity Scope",
+      "examples": ["Trading and distribution of biofuels (mass balance)"]
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date",
+      "title": "Valid from",
+      "examples": ["2025-01-15"]
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date",
+      "title": "Valid until",
+      "examples": ["2026-01-14"]
+    },
+    "documentReference": {
+      "type": "string",
+      "format": "uri",
+      "title": "Document reference (URL)",
+      "examples": ["https://example.org/docs/DCC-2025-000123.pdf"]
+    },
+
+    /* ---------- ISCC extensies ---------- */
+    "certificateNumber": {
+      "type": "string",
+      "title": "ISCC Certificate Number",
+      "examples": ["ISCC-EU-PL-123456789"]
+    },
+    "scheme": {
+      "type": "string",
+      "title": "ISCC Scheme",
+      "enum": ["ISCC EU", "ISCC PLUS", "ISCC CORSIA"],
+      "examples": ["ISCC EU"]
+    },
+    "certificateType": {
+      "type": "string",
+      "title": "Certificate Type",
+      "examples": ["Sustainability Certification"]
+    },
+    "siteCountry": {
+      "type": "string",
+      "title": "Country (ISO 3166-1 alpha-2)",
+      "pattern": "^[A-Z]{2}$",
+      "examples": ["NL"]
+    },
+    "scope": {
+      "type": "string",
+      "title": "ISCC Certified Scope (detail)",
+      "examples": ["Trading and distribution of biofuels (mass balance)"]
+    },
+    "reference": {
+      "type": "string",
+      "format": "uri",
+      "title": "Public certificate URL",
+      "examples": ["https://iscc-system.org/certificates/ISCC-EU-PL-123456789.pdf"]
+    }
+  }
+}
