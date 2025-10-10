@@ -9,13 +9,13 @@
     "firstname": {
       "type": "string",
       "title": "First name",
-      "examples": ["Harmen"],
+      "examples": ["Ruud"],
       "minLength": 1
     },
     "lastname": {
       "type": "string",
       "title": "Last name",
-      "examples": ["van der Kooij"],
+      "examples": ["Gullit"],
       "minLength": 1
     }
   },
