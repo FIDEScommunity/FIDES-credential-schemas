@@ -1,4 +1,7 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/data-schemas/vcdm/iscc-certificate.schema.json",
+  "$comment": "Semantics via https://fidescommunity.github.io/vocab/iscc.vocab.jsonld and https://fidescommunity.github.io/contexts/iscc-certificate.context.jsonld",
   "title": "ISCC Certificate – CredentialSubject",
   "description": "Minimal JSON Schema for the credentialSubject of an ISCC Certificate Credential (issued by an ISCC CAB to a supply-chain party).",
   "type": "object",
