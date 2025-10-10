@@ -1,116 +1,115 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/data-schemas/vcdm/iscc-certificate.schema.json",
-  "$comment": "Semantics via https://fidescommunity.github.io/vocab/iscc.vocab.jsonld and https://fidescommunity.github.io/contexts/iscc-certificate.context.jsonld",
-  "title": "ISCC Certificate – CredentialSubject",
-  "description": "Minimal JSON Schema for the credentialSubject of an ISCC Certificate Credential (issued by an ISCC CAB to a supply-chain party).",
-  "type": "object",
-  "additionalProperties": true,
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "schema": "https://schema.org/",
+    "iscc": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld#"
+  },
 
-  "required": [
-    "certificateNumber",
-    "scheme",
-    "certifiedParty",
-    "validFrom",
-    "validUntil",
-    "cab"
-  ],
+  "@id": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/iscc.vocab.jsonld",
+  "rdfs:label": "ISCC Vocabulary (basic example)",
+  "rdfs:comment": "Minimal vocabulary for ISCC-related credentials. Includes PoS/CoC/feedstock/GHG/CAB plus terms for an ISCC Certificate Credential.",
 
-  "properties": {
-    "certificateNumber": {
-      "type": "string",
-      "title": "ISCC Certificate Number",
-      "examples": ["ISCC-EU-PL-123456789"]
+  "@graph": [
+    {
+      "@id": "iscc:ISCCCertificate",
+      "@type": "rdfs:Class",
+      "rdfs:label": "ISCC Certificate",
+      "rdfs:comment": "A sustainability/conformity certificate under an ISCC scheme (e.g., ISCC EU, ISCC PLUS, ISCC CORSIA)."
     },
 
-    "scheme": {
-      "type": "string",
-      "title": "ISCC Scheme",
-      "enum": ["ISCC EU", "ISCC PLUS", "ISCC CORSIA"],
-      "examples": ["ISCC EU"]
+    { "@id": "iscc:certificateNumber", "@type": "rdf:Property",
+      "rdfs:label": "Certificate number",
+      "rdfs:comment": "Unique ISCC certificate identifier assigned by a CAB.",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "xsd:string"
     },
-
-    "certificateType": {
-      "type": "string",
-      "title": "Certificate Type",
-      "examples": ["Sustainability Certification"]
+    { "@id": "iscc:scheme", "@type": "rdf:Property",
+      "rdfs:label": "ISCC scheme",
+      "rdfs:comment": "ISCC scheme of the certificate (e.g., ISCC EU, ISCC PLUS, ISCC CORSIA).",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "xsd:string"
     },
-
-    "certifiedParty": {
-      "type": "object",
-      "title": "Certified Organization",
-      "required": ["legalName"],
-      "additionalProperties": true,
-      "properties": {
-        "legalName": {
-          "type": "string",
-          "title": "Legal name",
-          "examples": ["Van Kessel Olie B.V."]
-        },
-        "vatId": {
-          "type": "string",
-          "title": "VAT ID",
-          "examples": ["NL123456789B01"]
-        },
-        "lei": {
-          "type": "string",
-          "title": "LEI",
-          "examples": ["724500XXXXXXXXXXXXXX"]
-        }
-      }
+    { "@id": "iscc:certificateType", "@type": "rdf:Property",
+      "rdfs:label": "Certificate type",
+      "rdfs:comment": "Type/category of the ISCC certificate.",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "xsd:string"
     },
-
-    "scope": {
-      "type": "string",
-      "title": "Certified Scope",
-      "examples": ["Trading and distribution of biofuels (mass balance)"]
+    { "@id": "iscc:certifiedParty", "@type": "rdf:Property",
+      "rdfs:label": "Certified party",
+      "rdfs:comment": "Organization to which the certificate is issued.",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "schema:Organization"
     },
-
-    "siteCountry": {
-      "type": "string",
-      "title": "Country (ISO 3166-1 alpha-2)",
-      "pattern": "^[A-Z]{2}$",
-      "examples": ["NL"]
+    { "@id": "iscc:scope", "@type": "rdf:Property",
+      "rdfs:label": "Certified scope",
+      "rdfs:comment": "Scope/activities covered (e.g., trading, distribution, mass balance).",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "xsd:string"
     },
-
-    "validFrom": {
-      "type": "string",
-      "format": "date",
-      "title": "Valid from",
-      "examples": ["2025-01-15"]
+    { "@id": "iscc:siteCountry", "@type": "rdf:Property",
+      "rdfs:label": "Country (ISO 3166-1 alpha-2)",
+      "rdfs:comment": "Country code where the certified site operates.",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "xsd:string"
     },
-
-    "validUntil": {
-      "type": "string",
-      "format": "date",
-      "title": "Valid until",
-      "examples": ["2026-01-14"]
+    { "@id": "iscc:validFrom", "@type": "rdf:Property",
+      "rdfs:label": "Valid from",
+      "rdfs:comment": "Certificate validity start date.",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "xsd:date"
     },
-
-    "cab": {
-      "type": "object",
-      "title": "Conformity Assessment Body",
-      "required": ["legalName"],
-      "additionalProperties": true,
-      "properties": {
-        "legalName": {
-          "type": "string",
-          "title": "CAB name",
-          "examples": ["Control Union Certifications B.V."]
-        },
-        "accreditationId": {
-          "type": "string",
-          "title": "Accreditation ID",
-          "examples": ["CUC-NL-0001"]
-        }
-      }
+    { "@id": "iscc:validUntil", "@type": "rdf:Property",
+      "rdfs:label": "Valid until",
+      "rdfs:comment": "Certificate validity end date.",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "xsd:date"
     },
-
-    "reference": {
-      "type": "string",
-      "format": "uri",
-      "title": "Public certificate URL",
-      "examples": ["https://iscc-system.org/certificates/ISCC-EU-PL-123456789.pdf"]
+    { "@id": "iscc:cab", "@type": "rdf:Property",
+      "rdfs:label": "Conformity Assessment Body",
+      "rdfs:comment": "Accredited CAB that issued the certificate.",
+      "rdfs:domain": "iscc:ISCCCertificate", "rdfs:range": "schema:Organization"
+    },
+    { "@id": "iscc:accreditationId", "@type": "rdf:Property",
+      "rdfs:label": "Accreditation ID",
+      "rdfs:comment": "Identifier of the CAB's accreditation record.",
+      "rdfs:range": "xsd:string"
+    },
+    { "@id": "iscc:reference", "@type": "rdf:Property",
+      "rdfs:label": "Reference URL",
+      "rdfs:comment": "Public URL for the certificate artifact or registry page.",
+      "rdfs:range": "xsd:anyURI"
+    },
+    {
+      "@id": "iscc:posId",
+      "rdfs:label": "PoS ID",
+      "rdfs:comment": "Identifier of an ISCC Proof of Sustainability (PoS) certificate or document.",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:identifier" }
+    },
+    {
+      "@id": "iscc:cocModel",
+      "rdfs:label": "Chain of Custody Model",
+      "rdfs:comment": "Chain of custody model applicable to the material (e.g., MassBalance, Segregation, BookAndClaim).",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:category" }
+    },
+    {
+      "@id": "iscc:feedstockType",
+      "rdfs:label": "Feedstock Type",
+      "rdfs:comment": "Type of biomass or renewable input (e.g., UCO, POME, Tallow, Corn).",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:material" }
+    },
+    {
+      "@id": "iscc:ghgIntensity",
+      "rdfs:label": "GHG Intensity (gCO2e/MJ)",
+      "rdfs:comment": "GHG emission intensity associated with the product system, in grams CO2e per MJ.",
+      "rdfs:range": { "@id": "xsd:decimal" },
+      "owl:equivalentProperty": { "@id": "schema:value" }
+    },
+    {
+      "@id": "iscc:certificationBody",
+      "rdfs:label": "Certification Body",
+      "rdfs:comment": "Name or identifier of the accredited Certification Body (CAB) that issued or audited the ISCC certification.",
+      "rdfs:range": { "@id": "xsd:string" },
+      "owl:equivalentProperty": { "@id": "schema:provider" }
     }
-  }
+  ]
 }
+
