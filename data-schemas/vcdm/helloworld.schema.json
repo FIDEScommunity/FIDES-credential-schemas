@@ -28,5 +28,5 @@
       "minLength": 1
     }
   },
-  "required": ["firstname", "lastname"]
+  "required": ["id","firstname", "lastname"]
 }
