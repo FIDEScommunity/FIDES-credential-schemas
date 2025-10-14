@@ -7,6 +7,14 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
+    "id": {
+      "type": "string",
+      "title": "Identifier",
+      "examples": [
+        "123"
+      ],
+      "minLength": 1
+    }
     "firstname": {
       "type": "string",
       "title": "First name",
