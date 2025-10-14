@@ -7,6 +7,7 @@
   "additionalProperties": true,
 
   "required": [
+    "id",
     "certificateNumber",
     "certifiedParty",
     "cab",
@@ -16,6 +17,14 @@
   ],
 
   "properties": {
+    "id": {
+      "type": "string",
+      "title": "Identifier",
+      "examples": [
+        "123"
+      ],
+      "minLength": 1
+    }
     "certificateNumber": {
       "type": "string",
       "title": "ISCC Certificate Number (→ UNTP DCC certificateId)",
