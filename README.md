@@ -5,11 +5,6 @@ Some of them are copies from other repositories.
 
 > ⚠️ These schemas are **non-binding** and are provided for **interoperability testing only**. They may be replaced once formal schema owners publish authoritative versions.
 
-## Repository structure
-
-- `data-schemas/sd-jwt/` — JSON Schema files for credentials that use the SD-JWT VC format
-- `data-schemas/vcdm/` — JSON Schema files for credentials that use the W3C VCDM 2.0 VC format
-
 ## Status
 
 These schemas are:

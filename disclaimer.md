@@ -9,4 +9,4 @@ They are intended for use in experimental and pre-production environments only. 
 
 Where possible, these schemas follow relevant standards such as:
 - Verifiable Credential Data Model 2.0 (VC-DM)
-- Selective Disclosure JWT (SD-JWT)
+- Selective Disclosure JWT (SD-JWT VC)
