@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://test.uncefact.org/vocabulary/untp/core/0/",
+    "https://test.uncefact.org/vocabulary/untp/dte/0/",
+    "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/clean-fuel.vocab.jsonld",
+    {
+      "CfpPosCredential": "urn:org:cfp:pos:1",
+      "CfpDeliveryCredential": "urn:org:cfp:delivery:1"
+    }
+  ]
+}
