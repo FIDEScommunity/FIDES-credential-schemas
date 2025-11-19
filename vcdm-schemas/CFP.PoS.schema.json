@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/schemas/clean-fuel/pos/1/FIDES.cleanFuelPos.schema.json",
+  "title": "Clean Fuel Proof of Sustainability (PoS)",
+  "description": "This JSON Schema defines only the domain-specific claims inside `credentialSubject` for a Clean Fuel Proof of Sustainability (PoS) credential covering a physical clean fuel batch. It is intended for VCDM 2.0 credentials using SD-JWT as the proof mechanism. Base Verifiable Credential properties such as `@context`, `type`, `issuer`, `issuanceDate`, `validFrom`, `credentialSubject.id`, and `proof` are not included here and are handled by the issuing wallet or ecosystem. The semantic meaning of these properties is expected to be defined via JSON-LD contexts, including a Clean Fuel context and relevant UNTP vocabularies (e.g., UNTP Core and UNTP Digital Conformity/Compliance concepts).",
+  "type": "object",
+  "properties": {
+    "posNumber": {
+      "type": "string",
+      "description": "Unique number of the PoS document as issued under the sustainability scheme. Required. Example: ISCC-EU-PO-2025-00012345",
+      "example": "ISCC-EU-PO-2025-00012345"
+    },
+    "batchId": {
+      "type": "string",
+      "description": "Supplier-assigned identifier of the physical clean fuel batch covered by this PoS. Required. Example: BATCH-2025-000123",
+      "example": "BATCH-2025-000123"
+    },
+    "scheme": {
+      "type": "string",
+      "description": "Name of the sustainability certification scheme. Required. Example: ISCC EU",
+      "example": "ISCC EU"
+    },
+    "schemeVersion": {
+      "type": "string",
+      "description": "Version of the sustainability certification scheme. Optional. Example: 4.0",
+      "example": "4.0"
+    },
+    "supplierName": {
+      "type": "string",
+      "description": "Name of the certified supplier issuing this PoS. Required. Example: ACME Biofuels GmbH",
+      "example": "ACME Biofuels GmbH"
+    },
+    "supplierIdentifier": {
+      "type": "string",
+      "description": "Business identifier of the supplier, such as KVK, VAT/BTW, SIREN, SIRET, GLN, or other trade identifiers. Required. Example: KVK:81234567",
+      "example": "KVK:81234567"
+    },
+    "supplierDid": {
+      "type": "string",
+      "description": "DID of the supplier (organisation wallet) issuing this PoS. Optional. Example: did:web:wallet.acme-biofuels.com",
+      "example": "did:web:wallet.acme-biofuels.com"
+    },
+    "recipientName": {
+      "type": "string",
+      "description": "Name of the first buyer/recipient of the batch covered by this PoS. Optional. Example: FIDES Labs BV",
+      "example": "FIDES Labs BV"
+    },
+    "recipientIdentifier": {
+      "type": "string",
+      "description": "Business identifier of the first buyer/recipient, such as KVK, VAT/BTW, SIREN, SIRET, GLN. Optional. Example: KVK:97159174",
+      "example": "KVK:97159174"
+    },
+    "recipientDid": {
+      "type": "string",
+      "description": "DID of the first buyer/recipient (organisation wallet). Optional. Example: did:web:wallet.fides.community",
+      "example": "did:web:wallet.fides.community"
+    },
+    "countryOfOrigin": {
+      "type": "string",
+      "description": "Country of origin of the feedstock or batch, ISO 3166-1 alpha-2 code. Required. Example: DE",
+      "example": "DE",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "feedstockType": {
+      "type": "string",
+      "description": "Type of feedstock used to produce this batch. Required. Example: Used Cooking Oil (UCO)",
+      "example": "Used Cooking Oil (UCO)"
+    },
+    "fuelType": {
+      "type": "string",
+      "description": "Type of fuel produced in this batch. Required. Example: HVO100",
+      "example": "HVO100"
+    },
+    "quantity": {
+      "type": "number",
+      "description": "Quantity of the batch covered by this PoS. Required. Example: 30000",
+      "example": 30000
+    },
+    "quantityUnit": {
+      "type": "string",
+      "description": "Unit of the batch quantity. Required. Example: t",
+      "enum": [
+        "t",
+        "kg",
+        "L",
+        "l",
+        "m3"
+      ],
+      "example": "t"
+    },
+    "energyContentMj": {
+      "type": "number",
+      "description": "Total energy content of the batch in megajoules (MJ). Optional. Example: 1000000",
+      "example": 1000000
+    },
+    "ghgEmission_gCO2eqPerMJ": {
+      "type": "number",
+      "description": "This is the principal sustainability metric of the batch. Greenhouse gas emissions of the fuel in gCO2eq/MJ, as stated on the PoS. Required if reported. Example: 12.5",
+      "example": 12.5
+    },
+    "ghgSavingPercent": {
+      "type": "number",
+      "description": "Greenhouse gas emissions saving relative to the fossil comparator, in percent. Optional. Example: 88.5",
+      "example": 88.5
+    },
+    "ISCCcertificateNumber": {
+      "type": "string",
+      "description": "Certificate registration number under the sustainability scheme (e.g. ISCC certificate number of the certified supplier). Required. Example: ISCC-EU-CERT-DE123-12345678",
+      "example": "ISCC-EU-CERT-DE123-12345678"
+    },
+    "chainOfCustody": {
+      "type": "string",
+      "description": "Chain of custody system applied to this batch under the sustainability scheme. Required. Example: Mass Balance",
+      "enum": [
+        "Mass Balance",
+        "Segregated",
+        "Book & Claim",
+        "Controlled blending"
+      ],
+      "example": "Mass Balance"
+    },
+    "dateOfDispatch": {
+      "type": "string",
+      "format": "date",
+      "description": "Date on which the batch covered by this PoS was dispatched (shipped/released) by the certified supplier, as recorded in the PoS. Required. Example: 2025-02-12",
+      "example": "2025-02-12"
+    },
+    "countryOfBiofuelProduction": {
+      "type": "string",
+      "description": "Country in which the biofuel was produced, ISO 3166-1 alpha-2 code, as recorded on the PoS. Required. Example: NL",
+      "example": "NL",
+      "minLength": 2,
+      "maxLength": 2
+    }
+  },
+  "required": [
+    "posNumber",
+    "batchId",
+    "scheme",
+    "ISCCcertificateNumber",
+    "supplierName",
+    "supplierIdentifier",
+    "countryOfOrigin",
+    "feedstockType",
+    "fuelType",
+    "quantity",
+    "quantityUnit",
+    "chainOfCustody",
+    "dateOfDispatch",
+    "countryOfBiofuelProduction"
+  ]
+}
