@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FIDEScommunity/FIDES-credential-schemas/tree/main/fides-credential-schemas/data-schemas/sd-jwt/FIDES legal-person-identification-data-SDJWTVC-flat-1.2.json",
+  "title": "FIDES LPID Attestation (SD-JWT VC, flat schema)",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for the LPID (Legal Person ID) attestation as a single, flat JSON object. It is derived from the EWC PID Rulebook and aligned with the IETF SD-JWT VC data model: generic SD-JWT VC claims (iss, sub, vct, iat, nbf, exp, jti, cnf) are defined alongside the domain-specific LPID claims. Implementations may conceptually treat this as a layered model (base + domain), but the structure is flat for systems that expect a single JSON Schema document, such as current organizational wallet templates.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:lpid:1"
+    },
+    "legal_person_id": {
+      "type": "string",
+      "description": "The EUID or other legal person identifier of the company."
+    },
+    "legal_person_name": {
+      "type": "string",
+      "description": "The registered name of the company."
+    },
+    "issuer_name": {
+      "type": "string",
+      "description": "Name of the authority or organization that issued the LPID attestation."
+    },
+    "issuer_id": {
+      "type": "string",
+      "description": "Identifier of the issuing authority (e.g. business register identifier for BRIS)."
+    },
+    "issuer_country": {
+      "type": "string",
+      "description": "Alpha-2 country code, as defined in ISO 3166-1, of the issuing country.",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "issuance_date": {
+      "type": "string",
+      "description": "Date and possibly time of issuance, including timezone offset (ISO 8601).",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2})?$"
+    },
+    "expiry_date": {
+      "type": "string",
+      "description": "Date and possibly time of expiration, including timezone offset (ISO 8601).",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2})?$"
+    },
+    "authentic_source_id": {
+      "type": "string",
+      "description": "Identifier of the authentic source of the data (e.g. business register identifier such as BRIS, HRB, etc.)."
+    },
+    "authentic_source_name": {
+      "type": "string",
+      "description": "Human-readable name of the authentic source that issued the instance."
+    }
+  },
+  "required": [
+    "legal_person_id",
+    "legal_person_name",
+    "issuer_name",
+    "issuer_id",
+    "issuer_country",
+    "issuance_date",
+    "expiry_date"
+  ]
+}

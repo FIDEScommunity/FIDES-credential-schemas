@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/vct-schemas/einv-peppol/1/FIDES.einvPeppol.schema.json",
+  "title": "PEPPOL eInvoicing Capability",
+  "description": "This schema defines a self-issued Verifiable Credential containing the PEPPOL eInvoicing capabilities of an organisation. It contains domain-specific claims and is intended to be combined with a base VC layer by the wallet or ecosystem.",
+  "type": "object",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "description": "The Verifiable Credential Type (VCT) for this PEPPOL eInvoicing capability. Required. Example: urn:org:fides:einv-peppol:1",
+      "const": "urn:org:fides:einv-peppol:1",
+      "example": "urn:org:fides:einv-peppol:1"
+    },
+    "entityName": {
+      "type": "string",
+      "description": "The name of the entity operating this PEPPOL eInvoicing channel. Required. Example: ACME BV",
+      "example": "ACME BV"
+    },
+    "country": {
+      "type": "string",
+      "description": "The ISO 3166-1 alpha-2 country code of the entity. Required. Example: NL",
+      "example": "NL",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "peppolParticipantId": {
+      "type": "string",
+      "description": "The PEPPOL Participant Identifier (iso6523-actorid-upis format). Required. Example: iso6523-actorid-upis::0106:123456789",
+      "example": "iso6523-actorid-upis::0106:123456789"
+    },
+    "peppolSmpUrl": {
+      "type": "string",
+      "description": "The URL of the organisation\u2019s PEPPOL SMP record. Optional. Example: https://acc.smp.credenco.com/iso6523-actorid-upis::0106:123456789",
+      "example": "https://acc.smp.credenco.com/iso6523-actorid-upis::0106:123456789"
+    },
+    "peppolAs4Endpoint": {
+      "type": "string",
+      "description": "AS4 endpoint URL of the Access Point servicing this participant. Optional. Example: https://ap.provider.com/as4",
+      "example": "https://ap.provider.com/as4"
+    },
+    "documentIdentifiers": {
+      "type": "array",
+      "description": "Supported document identifiers for this PEPPOL eInvoicing channel. Required. Examples: urn:fdc:peppol.eu:poacc:billing:3:invoice, urn:fdc:peppol.eu:poacc:billing:3:creditnote",
+      "items": {
+        "type": "string",
+        "description": "A document identifier code or URI.",
+        "example": "urn:fdc:peppol.eu:poacc:billing:3:invoice"
+      }
+    },
+    "processIdentifiers": {
+      "type": "array",
+      "description": "Supported process identifiers for this PEPPOL channel. Required. Examples: urn:fdc:peppol.eu:2017:poacc:billing:01:1.0",
+      "items": {
+        "type": "string",
+        "description": "A process identifier code or URI.",
+        "example": "urn:fdc:peppol.eu:2017:poacc:billing:01:1.0"
+      }
+    },
+    "transportType": {
+      "type": "string",
+      "description": "The transport type used for PEPPOL eInvoicing. Optional. Example: PEPPOL",
+      "enum": [
+        "PEPPOL"
+      ],
+      "example": "PEPPOL"
+    }
+  },
+  "required": [
+    "vct",
+    "entityName",
+    "country",
+    "peppolParticipantId",
+    "documentIdentifiers",
+    "processIdentifiers"
+  ]
+}

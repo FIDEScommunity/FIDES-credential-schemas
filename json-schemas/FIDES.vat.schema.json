@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FIDEScommunity/FIDES-credential-schemas/tree/main/fides-credential-schemas/data-schemas/sd-jwt/FIDES.vat.schema.json",
+  "title": "FIDES VAT Attestation (SD-JWT VC, flat schema)",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for the VAT (Tax) attestation as a single, flat JSON object. It is aligned with the IETF SD-JWT VC data model: generic SD-JWT VC claims (iss, sub, vct, iat, nbf, exp, jti, cnf) are defined alongside the domain-specific LPID claims. Implementations may conceptually treat this as a layered model (base + domain), but the structure is flat for systems that expect a single JSON Schema document, such as current organizational wallet templates.",
+  "type": "object",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:vat:1"
+    },
+    "legal_person_id": {
+      "type": "string"
+    },
+    "legal_person_name": {
+      "type": "string"
+    },
+    "legal_form_type": {
+      "type": "string"
+    },
+    "vat_number": {
+      "type": "string"
+    },
+    "tax_number": {
+      "type": "string"
+    }
+  },
+  "required": ["legal_person_id", "legal_person_name", "legal_form_type", "vat_number", "tax_number"]
+}
