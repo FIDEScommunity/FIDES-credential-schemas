@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/schemas/clean-fuel/delivery/1/FIDES.fuelDelivery.schema.json",
+  "title": "Clean Fuel Delivery",
+  "description": "This JSON Schema defines only the domain-specific claims inside `credentialSubject` for a Clean Fuel Delivery credential. It is intended for VCDM 2.0 credentials using SD-JWT as the proof mechanism.  
+Base Verifiable Credential properties such as `@context`, `type`, `issuer`, `issuanceDate`, `validFrom`, `credentialSubject.id`, and `proof` are not included here and are handled by the issuing wallet or ecosystem.  
+The semantic meaning of these properties is expected to be defined via JSON-LD contexts, including a Clean Fuel context and relevant UNTP vocabularies (e.g., UNTP Core and UNTP DTE).",
+  "type": "object",
+  "properties": {
+    "deliveryId": {
+      "type": "string",
+      "description": "Supplier-assigned unique identifier for this delivery event, such as a load ticket number, pump ticket, order line reference, or internal sales/delivery number. Required. Example: DEL-2025-007521",
+      "example": "DEL-2025-007521"
+    },
+    "batchId": {
+      "type": "string",
+      "description": "Identifier of the parent clean fuel batch from which this delivery is taken. Required. Example: BATCH-2025-000123",
+      "example": "BATCH-2025-000123"
+    },
+    "relatedPosNumber": {
+      "type": "string",
+      "description": "Unique number of the PoS that covers the parent batch. Required. Example: ISCC-EU-PO-2025-00012345",
+      "example": "ISCC-EU-PO-2025-00012345"
+    },
+    "deliveredQuantity": {
+      "type": "number",
+      "description": "Quantity delivered to the buyer. Required. Example: 200",
+      "example": 200
+    },
+    "deliveredQuantityUnit": {
+      "type": "string",
+      "description": "Unit of the delivered quantity. Required. Example: L",
+      "enum": [
+        "t",
+        "kg",
+        "L",
+        "l",
+        "m3"
+      ],
+      "example": "L"
+    },
+    "deliveryDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the delivery. Required. Example: 2025-03-15",
+      "example": "2025-03-15"
+    },
+    "buyerName": {
+      "type": "string",
+      "description": "Name of the buyer receiving this delivery. Required. Example: Transportbedrijf Jansen BV",
+      "example": "Transportbedrijf Jansen BV"
+    },
+    "buyerIdentifier": {
+      "type": "string",
+      "description": "Business identifier of the buyer, such as KVK, VAT/BTW, SIREN, SIRET, GLN, or other trade identifiers. Required. Example: KVK:81234567",
+      "example": "KVK:81234567"
+    },
+    "deliveryLocation": {
+      "type": "string",
+      "description": "Location where the delivery took place (e.g. depot, filling station, site, GPS reference). Optional. Example: Depot Rotterdam Waalhaven",
+      "example": "Depot Rotterdam Waalhaven"
+    }
+  },
+  "required": [
+    "deliveryId",
+    "batchId",
+    "relatedPosNumber",
+    "deliveredQuantity",
+    "deliveredQuantityUnit",
+    "deliveryDate",
+    "buyerName",
+    "buyerIdentifier"
+  ]
+}
