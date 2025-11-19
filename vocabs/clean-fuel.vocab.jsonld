@@ -1,0 +1,188 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "cfp": "https://fidescommunity.github.io/FIDES-credential-schemas/vocabs/clean-fuel.vocab.jsonld#",
+    "posNumber": {
+      "@id": "cfp:posNumber",
+      "@type": "xsd:string",
+      "rdfs:label": "PoS number",
+      "rdfs:comment": "Unique number of the Proof of Sustainability (PoS) document as issued under the sustainability scheme."
+    },
+    "batchId": {
+      "@id": "cfp:batchId",
+      "@type": "xsd:string",
+      "rdfs:label": "Batch identifier",
+      "rdfs:comment": "Supplier-assigned identifier of the physical clean fuel batch covered by the PoS and referenced by deliveries."
+    },
+    "scheme": {
+      "@id": "cfp:scheme",
+      "@type": "xsd:string",
+      "rdfs:label": "Sustainability scheme name",
+      "rdfs:comment": "Name of the sustainability certification scheme under which the PoS is issued, such as ISCC EU."
+    },
+    "schemeVersion": {
+      "@id": "cfp:schemeVersion",
+      "@type": "xsd:string",
+      "rdfs:label": "Sustainability scheme version",
+      "rdfs:comment": "Version identifier of the sustainability certification scheme."
+    },
+    "ISCCcertificateNumber": {
+      "@id": "cfp:ISCCcertificateNumber",
+      "@type": "xsd:string",
+      "rdfs:label": "ISCC certificate number",
+      "rdfs:comment": "Certificate registration number of the certified supplier under the ISCC scheme."
+    },
+    "supplierName": {
+      "@id": "cfp:supplierName",
+      "@type": "xsd:string",
+      "rdfs:label": "Supplier name",
+      "rdfs:comment": "Legal name of the certified supplier issuing the PoS."
+    },
+    "supplierIdentifier": {
+      "@id": "cfp:supplierIdentifier",
+      "@type": "xsd:string",
+      "rdfs:label": "Supplier business identifier",
+      "rdfs:comment": "Business identifier of the supplier, such as KVK, VAT/BTW, SIREN, SIRET, or GLN."
+    },
+    "supplierDid": {
+      "@id": "cfp:supplierDid",
+      "@type": "@id",
+      "rdfs:label": "Supplier DID",
+      "rdfs:comment": "Decentralized identifier (DID) of the supplier\u2019s organisational wallet issuing the PoS."
+    },
+    "recipientName": {
+      "@id": "cfp:recipientName",
+      "@type": "xsd:string",
+      "rdfs:label": "Recipient name",
+      "rdfs:comment": "Name of the first buyer or recipient of the batch covered by the PoS."
+    },
+    "recipientIdentifier": {
+      "@id": "cfp:recipientIdentifier",
+      "@type": "xsd:string",
+      "rdfs:label": "Recipient business identifier",
+      "rdfs:comment": "Business identifier of the first buyer or recipient, such as KVK, VAT/BTW, SIREN, SIRET, or GLN."
+    },
+    "recipientDid": {
+      "@id": "cfp:recipientDid",
+      "@type": "@id",
+      "rdfs:label": "Recipient DID",
+      "rdfs:comment": "Decentralized identifier (DID) of the first buyer or recipient\u2019s organisational wallet."
+    },
+    "feedstockCountryOfOrigin": {
+      "@id": "cfp:feedstockCountryOfOrigin",
+      "@type": "xsd:string",
+      "rdfs:label": "Feedstock country of origin",
+      "rdfs:comment": "Country of origin of the raw material (feedstock), as an ISO 3166-1 alpha-2 code."
+    },
+    "countryOfBiofuelProduction": {
+      "@id": "cfp:countryOfBiofuelProduction",
+      "@type": "xsd:string",
+      "rdfs:label": "Biofuel production country",
+      "rdfs:comment": "Country in which the biofuel was produced, as an ISO 3166-1 alpha-2 code."
+    },
+    "feedstockType": {
+      "@id": "cfp:feedstockType",
+      "@type": "xsd:string",
+      "rdfs:label": "Feedstock type",
+      "rdfs:comment": "Type of feedstock used to produce the batch, such as Used Cooking Oil (UCO)."
+    },
+    "fuelType": {
+      "@id": "cfp:fuelType",
+      "@type": "xsd:string",
+      "rdfs:label": "Fuel type",
+      "rdfs:comment": "Type of fuel produced in the batch, such as HVO100."
+    },
+    "quantity": {
+      "@id": "cfp:quantity",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Batch quantity",
+      "rdfs:comment": "Quantity of the batch covered by the PoS."
+    },
+    "quantityUnit": {
+      "@id": "cfp:quantityUnit",
+      "@type": "xsd:string",
+      "rdfs:label": "Batch quantity unit",
+      "rdfs:comment": "Unit of measure for the batch quantity, such as t, kg, L, or m3."
+    },
+    "energyContentMj": {
+      "@id": "cfp:energyContentMj",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Energy content (MJ)",
+      "rdfs:comment": "Total energy content of the batch in megajoules (MJ)."
+    },
+    "ghgEmission_gCO2eqPerMJ": {
+      "@id": "cfp:ghgEmission_gCO2eqPerMJ",
+      "@type": "xsd:decimal",
+      "rdfs:label": "GHG emissions per MJ",
+      "rdfs:comment": "Total greenhouse gas emissions per MJ of fuel (g CO2eq/MJ), as reported on the PoS. This is the principal sustainability metric of the batch."
+    },
+    "ghgSavingPercent": {
+      "@id": "cfp:ghgSavingPercent",
+      "@type": "xsd:decimal",
+      "rdfs:label": "GHG saving percentage",
+      "rdfs:comment": "Greenhouse gas emission saving of the fuel relative to the fossil comparator, expressed as a percentage."
+    },
+    "chainOfCustody": {
+      "@id": "cfp:chainOfCustody",
+      "@type": "xsd:string",
+      "rdfs:label": "Chain of custody system",
+      "rdfs:comment": "Chain of custody system applied to the batch under the sustainability scheme, such as Mass Balance or Segregated."
+    },
+    "dateOfDispatch": {
+      "@id": "cfp:dateOfDispatch",
+      "@type": "xsd:date",
+      "rdfs:label": "Date of dispatch",
+      "rdfs:comment": "Date on which the batch covered by the PoS was dispatched or released by the certified supplier."
+    },
+    "deliveryId": {
+      "@id": "cfp:deliveryId",
+      "@type": "xsd:string",
+      "rdfs:label": "Delivery identifier",
+      "rdfs:comment": "Supplier-assigned unique identifier for a specific fuel delivery event, such as a load ticket number or internal delivery reference."
+    },
+    "relatedPosNumber": {
+      "@id": "cfp:relatedPosNumber",
+      "@type": "xsd:string",
+      "rdfs:label": "Related PoS number",
+      "rdfs:comment": "Reference to the PoS number that covers the parent batch from which the delivery is taken."
+    },
+    "deliveredQuantity": {
+      "@id": "cfp:deliveredQuantity",
+      "@type": "xsd:decimal",
+      "rdfs:label": "Delivered quantity",
+      "rdfs:comment": "Quantity delivered to the buyer in a single delivery event."
+    },
+    "deliveredQuantityUnit": {
+      "@id": "cfp:deliveredQuantityUnit",
+      "@type": "xsd:string",
+      "rdfs:label": "Delivered quantity unit",
+      "rdfs:comment": "Unit of measure for the delivered quantity, such as L, kg, or t."
+    },
+    "deliveryDate": {
+      "@id": "cfp:deliveryDate",
+      "@type": "xsd:date",
+      "rdfs:label": "Delivery date",
+      "rdfs:comment": "Date on which the fuel delivery to the buyer took place."
+    },
+    "buyerName": {
+      "@id": "cfp:buyerName",
+      "@type": "xsd:string",
+      "rdfs:label": "Buyer name",
+      "rdfs:comment": "Name of the buyer receiving the fuel delivery."
+    },
+    "buyerIdentifier": {
+      "@id": "cfp:buyerIdentifier",
+      "@type": "xsd:string",
+      "rdfs:label": "Buyer business identifier",
+      "rdfs:comment": "Business identifier of the buyer, such as KVK, VAT/BTW, SIREN, SIRET, or GLN."
+    },
+    "deliveryLocation": {
+      "@id": "cfp:deliveryLocation",
+      "@type": "xsd:string",
+      "rdfs:label": "Delivery location",
+      "rdfs:comment": "Location where the fuel delivery took place, such as a depot, filling station, or site."
+    }
+  }
+}
