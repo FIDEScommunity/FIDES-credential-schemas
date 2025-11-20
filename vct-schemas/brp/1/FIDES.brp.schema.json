@@ -4,7 +4,7 @@
   "title": "BRP attestation",
   "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for the BRP (Persons) attestation as a single, flat JSON object.",
   "type": "object",
-  "required": ["evidence"],
+  "required": ["evidence", "issuing_authority", "issuing_authority_id", "authentic_source_id", "authentic_source_name"],
   "properties": {
     "vct": {
       "type": "string",
@@ -35,18 +35,21 @@
       },
       "additionalProperties": false
     },
-
-    "addressHash": { "type": "string" },
-
-    "evidence": {
-      "type": "object",
-      "required": ["source", "recordId", "asOf"],
-      "properties": {
-        "source": { "type": "string", "const": "BRP" },
-        "recordId": { "type": "string" },
-        "asOf": { "type": "string", "format": "date" }
-      },
-      "additionalProperties": false
+    "issuing_authority": {
+      "description": "Name of the issuer that issued the credential",
+      "type": "string"
+    },
+    "issuing_authority_id": {
+      "description": "EUID of the issuing authority",
+      "type": "string"
+    },
+    "authentic_source_id": {
+      "description": "EUID of the data providing entity",
+      "type": "string"
+    },
+    "authentic_source_name": {
+      "description": "Name of the data providing entity",
+      "type": "string"
     }
   },
   "additionalProperties": false
