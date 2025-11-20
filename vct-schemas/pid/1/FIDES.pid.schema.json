@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/FIDEScommunity/FIDES-credential-schemas/blob/main/fides-credential-schemas/data-schemas/sd-jwt/FIDES.pid.schema.json",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/pid/1/FIDES.pid.schema.json",
   "title": "FIDES - PID according to SD-JWT VC attribute definition",
   "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for the PID (Person Identification Data) attestation as a single, flat JSON object. It is derived from the EWC PID Rulebook (WP3)",
   "type": "object",

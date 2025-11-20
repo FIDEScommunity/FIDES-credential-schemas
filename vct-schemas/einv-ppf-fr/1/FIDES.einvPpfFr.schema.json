@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/FIDEScommunity/FIDES-credential-schemas/blob/main/vct-schemas/einv-ppf-fr/1/FIDES.einvPpfFr.schema.json",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/einv-ppf-fr/1/FIDES.einvPpfFr.schema.json",
   "title": "National eInvoicing \u2013 France PPF Capability",
   "description": "This schema defines a self-issued Verifiable Credential containing the national eInvoicing capabilities of an organisation on the French PPF (Portail Public de Facturation). It contains domain-specific claims and is intended to be combined with a base VC layer by the wallet or ecosystem.",
   "type": "object",

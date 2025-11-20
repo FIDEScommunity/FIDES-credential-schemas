@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/brp/1/FIDES.brp.schema.json",
+  "title": "BRP attestation",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for the BRP (Persons) attestation as a single, flat JSON object.",
+  "type": "object",
+  "required": ["evidence"],
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:brp:1"
+    },
+
+    "address": {
+      "type": "object",
+      "required": ["street", "houseNumber", "postalCode", "city", "country"],
+      "properties": {
+        "street": { "type": "string" },
+        "houseNumber": { "type": "integer", "minimum": 1 },
+        "houseNumberAddition": { "type": "string" },
+        "postalCode": { "type": "string", "pattern": "^[1-9][0-9]{3}[A-Z]{2}$" },
+        "city": { "type": "string" },
+        "municipality": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "code": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "country": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "addressLabel": { "type": "string" },
+        "addressStartDate": { "type": "string", "format": "date" },
+        "addressConfidential": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+
+    "addressHash": { "type": "string" },
+
+    "evidence": {
+      "type": "object",
+      "required": ["source", "recordId", "asOf"],
+      "properties": {
+        "source": { "type": "string", "const": "BRP" },
+        "recordId": { "type": "string" },
+        "asOf": { "type": "string", "format": "date" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

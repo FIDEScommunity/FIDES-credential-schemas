@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/bri/1/FIDES.bri.schema.json",
+  "title": "BRI attestation",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for the BRI (Income) attestation as a single, flat JSON object. It is derived from the BRI Rulebook (urn:eudi:nl:nl_bld_bri:1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "vct",
+    "subject",
+    "nl_bld_bri",
+    "datetime_of_expiry",
+    "issuing_authority",
+    "issuing_country"
+  ],
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:nl_bld_bri:1",
+      "description": "Verifiable Credential Type (VCT) identifier for the BRI attestation, as defined in the rulebook."
+    },
+
+    "datetime_of_expiry": {
+      "type": "string",
+      "description": "Administrative expiry date and time, including timezone offset (ISO 8601).",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$"
+    },
+    "datetime_of_issuance": {
+      "type": "string",
+      "description": "Administrative issuance date and time, including timezone offset (optional).",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$"
+    },
+
+    "issuing_authority": {
+      "type": "string",
+      "description": "Name of the issuing authority (e.g. the Dutch Tax Administration)."
+    },
+    "issuing_country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code (e.g. NL).",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "issuing_jurisdiction": {
+      "type": "string",
+      "description": "Jurisdiction of issuance (optional)."
+    },
+    "trust_anchor": {
+      "type": "string",
+      "description": "Reference (URL or identifier) to the applicable trust anchor (optional)."
+    },
+
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family_name", "given_name", "birthdate"],
+      "description": "Subject attributes (subset of PID) as defined in the mapping table in section 3.1.1.",
+      "properties": {
+        "family_name": { "type": "string", "description": "Family name of the subject." },
+        "given_name": { "type": "string", "description": "Given name of the subject." },
+        "birthdate": {
+          "type": "string",
+          "description": "Date of birth (YYYY-MM-DD).",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "sex": {
+          "type": "number",
+          "description": "Gender of the subject, encoded according to ISO/IEC 5218 (optional)."
+        },
+        "place_of_birth": {
+          "type": "string",
+          "description": "Place of birth (string, optional)."
+        },
+        "nationalities": {
+          "type": "string",
+          "description": "Nationalities as a string according to mapping (optional)."
+        }
+      }
+    },
+
+    "nl_bld_bri": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["year", "income"],
+      "description": "Income data as registered in the Dutch Basisregistratie Inkomen (BRI) for a specific year.",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "description": "Tax year to which the income data refers."
+        },
+        "income": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Annual income in full euros."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/contact-details/1/FIDES.contact-details.schema.json",
+  "title": "Contact Details",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for Contact Details (verified email and phone number) attestation as a single, flat JSON object.",
+  "type": "object",
+  "required": ["type", "version"],
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:contact-details:1"
+    },
+
+    "email": {
+      "type": "object",
+      "required": ["value", "verified_at", "method"],
+      "properties": {
+        "value": { "type": "string", "format": "idn-email" },
+        "verified_at": { "type": "string", "format": "date-time" },
+        "method": {
+          "type": "string",
+          "enum": ["email_magic_link", "email_otp", "email_challenge"]
+        },
+        "provider": { "type": "string" },
+        "proof_ref": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "phone": {
+      "type": "object",
+      "required": ["value", "verified_at", "method"],
+      "properties": {
+        "value": { "type": "string", "pattern": "^\\+[1-9]\\d{1,14}$" },
+        "verified_at": { "type": "string", "format": "date-time" },
+        "method": {
+          "type": "string",
+          "enum": ["sms_otp", "voice_call", "telco_db_lookup"]
+        },
+        "provider": { "type": "string" },
+        "proof_ref": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

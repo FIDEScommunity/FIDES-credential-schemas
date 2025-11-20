@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/company-roles/1/FIDES.company-roles.schema.json",
+  "title": "Company Roles Attestation",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for describing a natural person's roles in companies and the result of a board disqualification check.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "subject",
+    "board_history",
+    "board_disqualification",
+    "evidence"
+  ],
+
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:company_roles:1"
+    },
+
+    "subject": {
+      "type": "object",
+      "description": "Subject attributes (subset of PID) used to identify the natural person.",
+      "additionalProperties": false,
+      "required": [ "family_name", "given_name", "birthdate" ],
+      "properties": {
+        "family_name": {
+          "type": "string",
+          "description": "Family name (surname) of the subject."
+        },
+        "given_name": {
+          "type": "string",
+          "description": "Given name (first name) of the subject."
+        },
+        "birthdate": {
+          "type": "string",
+          "description": "Date of birth of the subject (YYYY-MM-DD).",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      }
+    },
+
+    "board_history": {
+      "type": "array",
+      "description": "List of company roles the subject holds or has held as registered in the KVK Handelsregister.",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "organization_name",
+          "kvk_number",
+          "function",
+          "status"
+        ],
+        "properties": {
+          "organization_name": {
+            "type": "string",
+            "description": "Registered (statutory or trade) name of the company or legal entity."
+          },
+          "kvk_number": {
+            "type": "string",
+            "description": "KVK registration number of the company.",
+            "pattern": "^[0-9]{8}$"
+          },
+          "function": {
+            "type": "string",
+            "description": "Role/function of the subject within the company, as registered in the Handelsregister (e.g. 'Bestuurder', 'Commissaris')."
+          },
+          "start_date": {
+            "type": ["string", "null"],
+            "description": "Start date of the role (YYYY-MM-DD) or null if unknown.",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "end_date": {
+            "type": ["string", "null"],
+            "description": "End date of the role (YYYY-MM-DD) or null if the role is still active.",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the role.",
+            "enum": [ "active", "ended" ]
+          }
+        }
+      }
+    },
+
+    "board_disqualification": {
+      "type": "boolean",
+      "description": "Result of the board disqualification check: false = no active ban, true = an active board disqualification exists."
+    },
+
+    "evidence": {
+      "type": "object",
+      "description": "Information about the data sources and the reference time of the checks.",
+      "additionalProperties": false,
+      "required": [ "source", "checked_at" ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Name or description of the sources used (e.g. 'KVK Handelsregister & Bestuursverbodenregister')."
+        },
+        "checked_at": {
+          "type": "string",
+          "description": "Date and time when the Handelsregister and board disqualification register were checked (ISO 8601, including timezone offset).",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$"
+        }
+      }
+    }
+  }
+}

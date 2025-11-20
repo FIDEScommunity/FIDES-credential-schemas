@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/FIDEScommunity/FIDES-credential-schemas/blob/main/vct-schemas/einv-direct/1/FIDES.einvDirect.schema.json",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/einv-direct/1/FIDES.einvDirect.schema.json",
   "title": "Direct eInvoicing Capability",
   "description": "This schema defines a self-issued Verifiable Credential with the direct eInvoicing capabilities of an organisation. It only contains domain-specific claims and is intended to be combined with a base VC layer by the wallet or ecosystem.",
   "type": "object",
