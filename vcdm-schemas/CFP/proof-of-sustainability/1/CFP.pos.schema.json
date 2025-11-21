@@ -5,6 +5,11 @@
   "description": "This JSON Schema defines only the domain-specific claims inside `credentialSubject` for a Clean Fuel Proof of Sustainability (PoS) credential covering a physical clean fuel batch. It is intended for VCDM 2.0 credentials using SD-JWT as the proof mechanism. Base Verifiable Credential properties such as `@context`, `type`, `issuer`, `issuanceDate`, `validFrom`, `credentialSubject.id`, and `proof` are not included here and are handled by the issuing wallet or ecosystem. The semantic meaning of these properties is expected to be defined via JSON-LD contexts, including a Clean Fuel context and relevant UNTP vocabularies (e.g., UNTP Core and UNTP Digital Conformity/Compliance concepts).",
   "type": "object",
   "properties": {
+    "type": {
+      "type": "string",
+      "const": "urn:org:cfp.pos:1",
+      "description": "Verifiable Credential Data Model Type identifier for the PoS attestation, as defined by the CFP."
+    },
     "posNumber": {
       "type": "string",
       "description": "Unique number of the PoS document as issued under the sustainability scheme. Required. Example: ISCC-EU-PO-2025-00012345",
