@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/notary-incorporation/1/FIDES.notary-incorporation.schema.json",
+  "title": "Notary Incorporation Attestation",
+  "description": "An SD-JWT VC attesting that a notary verified a founder's data and used it to produce a notarial deed for the incorporation of a company.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "date_of_issuance",
+    "founder",
+    "company",
+    "verifications"
+  ],
+
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:notary_incorporation_attestation:1"
+    },
+
+    "issuing_notary": {
+      "type": "string",
+      "description": "Name of the notarial office or notary issuing this attestation.",
+      "example": "Notariskantoor De Vries"
+    },
+
+    "issuing_notary_id": {
+      "type": "string",
+      "description": "Identifier of the notary or notarial office (e.g., KNB number).",
+      "example": "NL-KNB-123456"
+    },
+
+    "date_of_issuance": {
+      "type": "string",
+      "description": "ISO 8601 timestamp of issuance.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+      "example": "2025-11-21T10:15:00+01:00"
+    },
+
+    "deed": {
+      "type": "object",
+      "description": "Information about the notarial deed.",
+      "additionalProperties": false,
+      "required": ["deed_number", "deed_date", "deed_type"],
+      "properties": {
+        "deed_number": {
+          "type": "string",
+          "description": "Reference number of the notarial deed.",
+          "example": "2025-000123"
+        },
+        "deed_date": {
+          "type": "string",
+          "description": "Date of the deed.",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "example": "2025-11-21"
+        },
+        "deed_type": {
+          "type": "string",
+          "description": "Type of deed, e.g., incorporation.",
+          "example": "BV_incorporation"
+        }
+      }
+    },
+
+    "founder": {
+      "type": "object",
+      "description": "Basic identification attributes of the founder.",
+      "additionalProperties": false,
+      "required": ["family_name", "given_name", "birthdate"],
+      "properties": {
+        "family_name": {
+          "type": "string",
+          "description": "Family name of founder.",
+          "example": "Jansen"
+        },
+        "given_name": {
+          "type": "string",
+          "description": "Given name of founder.",
+          "example": "Pieter"
+        },
+        "birthdate": {
+          "type": "string",
+          "description": "Date of birth (YYYY-MM-DD).",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "example": "1980-04-12"
+        },
+        "address": {
+          "type": "object",
+          "description": "Residential address of the founder as verified by the notary.",
+          "additionalProperties": false,
+          "required": ["street", "house_number", "postal_code", "city", "country"],
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Street name.",
+              "example": "Nieuwegracht"
+            },
+            "house_number": {
+              "type": "string",
+              "description": "House or building number.",
+              "example": "42"
+            },
+            "postal_code": {
+              "type": "string",
+              "description": "Postal code.",
+              "example": "3512LR"
+            },
+            "city": {
+              "type": "string",
+              "description": "City or locality.",
+              "example": "Utrecht"
+            },
+            "country": {
+              "type": "string",
+              "description": "ISO 3166-1 alpha-2 country code.",
+              "example": "NL"
+            }
+          }
+        }
+
+      }
+    },
+
+    "company": {
+      "type": "object",
+      "description": "Information about the new company.",
+      "additionalProperties": false,
+      "required": ["name", "economic_activity_code", "economic_activity_description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "legal_form": "string",
+          "description": "Statutory name of the company.",
+          "example": "Jansen Tech Solutions B.V."
+        },
+        "legal_form": {
+          "type": "string",
+          "description": "Legal form of the company as registered in the Handelsregister.",
+          "example": "Besloten Vennootschap (BV)"
+        },
+        "economic_activity_code": {
+          "type": "string",
+          "description": "Primary economic activity code (e.g. SBI/NACE).",
+          "example": "6201"
+        },
+        "economic_activity_description": {
+          "type": "string",
+          "description": "Textual description of the economic activity.",
+          "example": "Ontwikkeling, productie en verkoop van software"
+        }
+      }
+    },
+
+    "verifications": {
+      "type": "object",
+      "description": "Overview of the verified credentials the notary used.",
+      "additionalProperties": false,
+      "required": ["bri_income", "brp_address", "contact_details", "company_roles"],
+      "properties": {
+
+        "bri_income": {
+          "type": "object",
+          "description": "BRI income credential verification summary.",
+          "additionalProperties": false,
+          "required": ["vct", "received", "checked_at", "issuer"],
+          "properties": {
+            "vct": {
+              "type": "string",
+              "const": "urn:org:fides:nl_bld_bri:1"
+            },
+            "received": {
+              "type": "boolean",
+              "example": true
+            },
+            "checked_at": {
+              "type": "string",
+              "description": "Timestamp of verification.",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+              "example": "2025-11-21T09:30:00+01:00"
+            },
+            "issuer": {
+              "type": "string",
+              "example": "Belastingdienst"
+            }
+          }
+        },
+
+        "brp_address": {
+          "type": "object",
+          "description": "BRP address credential verification summary.",
+          "additionalProperties": false,
+          "required": ["vct", "received", "checked_at", "issuer"],
+          "properties": {
+            "vct": {
+              "type": "string",
+              "const": "urn:org:fides:brp:1"
+            },
+            "received": {
+              "type": "boolean",
+              "example": true
+            },
+            "checked_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+              "example": "2025-11-21T09:35:00+01:00"
+            },
+            "issuer": {
+              "type": "string",
+              "example": "BRP / Gemeente Utrecht"
+            }
+          }
+        },
+
+        "contact_details": {
+          "type": "object",
+          "description": "Verified contact details used during incorporation.",
+          "additionalProperties": false,
+          "required": ["vct", "received", "checked_at", "issuer", "email", "phone"],
+          "properties": {
+            "vct": {
+              "type": "string",
+              "const": "urn:org:fides:contact-details:1"
+            },
+            "received": {
+              "type": "boolean",
+              "example": true
+            },
+            "checked_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+              "example": "2025-11-21T09:40:00+01:00"
+            },
+            "issuer": {
+              "type": "string",
+              "example": "VerificationService"
+            },
+            "email": {
+              "type": "string",
+              "example": "pieter.jansen@example.com"
+            },
+            "phone": {
+              "type": "string",
+              "example": "+31612345678"
+            }
+          }
+        },
+
+        "company_roles": {
+          "type": "object",
+          "description": "Company roles verification summary and board disqualification result.",
+          "additionalProperties": false,
+          "required": ["vct", "received", "checked_at", "issuer", "board_disqualification"],
+          "properties": {
+            "vct": {
+              "type": "string",
+              "const": "urn:org:fides:company_roles:1"
+            },
+            "received": {
+              "type": "boolean",
+              "example": true
+            },
+            "checked_at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+              "example": "2025-11-21T09:45:00+01:00"
+            },
+            "issuer": {
+              "type": "string",
+              "example": "Kamer van Koophandel"
+            },
+            "board_disqualification": {
+              "type": "boolean",
+              "description": "False = no active ban, true = active ban.",
+              "example": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
