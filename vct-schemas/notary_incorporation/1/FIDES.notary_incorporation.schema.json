@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/notary-incorporation/1/FIDES.notary-incorporation.schema.json",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/notary_incorporation/1/FIDES.notary_incorporation.schema.json",
   "title": "Notary Incorporation Attestation",
   "description": "An SD-JWT VC attesting that a notary verified a founder's data and used it to produce a notarial deed for the incorporation of a company.",
   "type": "object",
