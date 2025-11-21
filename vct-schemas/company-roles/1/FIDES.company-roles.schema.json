@@ -10,7 +10,8 @@
     "subject",
     "board_history",
     "board_disqualification",
-    "evidence"
+    "issuing_authority",
+    "issuing_authority_id"
   ],
 
   "properties": {
@@ -55,11 +56,11 @@
           "status"
         ],
         "properties": {
-          "organization_name": {
+          "legal_person_name": {
             "type": "string",
             "description": "Registered (statutory or trade) name of the company or legal entity."
           },
-          "kvk_number": {
+          "legal_person_id": {
             "type": "string",
             "description": "KVK registration number of the company.",
             "pattern": "^[0-9]{8}$"
@@ -92,22 +93,14 @@
       "description": "Result of the board disqualification check: false = no active ban, true = an active board disqualification exists."
     },
 
-    "evidence": {
-      "type": "object",
-      "description": "Information about the data sources and the reference time of the checks.",
-      "additionalProperties": false,
-      "required": [ "source", "checked_at" ],
-      "properties": {
-        "source": {
-          "type": "string",
-          "description": "Name or description of the sources used (e.g. 'KVK Handelsregister & Bestuursverbodenregister')."
-        },
-        "checked_at": {
-          "type": "string",
-          "description": "Date and time when the Handelsregister and board disqualification register were checked (ISO 8601, including timezone offset).",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$"
-        }
-      }
+    "issuing_authority": {
+      "description": "Name of the issuer that issued the credential",
+      "type": "string"
+    },
+    "issuing_authority_id": {
+      "description": "EUID of the issuing authority",
+      "type": "string"
     }
+
   }
 }
