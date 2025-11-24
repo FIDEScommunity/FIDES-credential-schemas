@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/green-lane-verified/1/FIDES.green-lane-verified.schema.json",
+  "title": "Green Lane Verified Credential",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential issued by the Dutch Chamber of Commerce (KVK) verifying that a company was incorporated through the Green Lane process using verifiable data and a notarial incorporation attestation.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "vct",
+    "issuing_authority",
+    "subject",
+    "green_lane",
+    "date_of_issuance"
+  ],
+
+  "properties": {
+
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:green_lane_verified:1",
+      "description": "The Verifiable Credential Type identifier for the Green Lane Verified credential.",
+    },
+
+    "issuing_authority": {
+      "type": "string",
+      "description": "Name of the authority issuing this credential (KVK).",
+      "example": "Kamer van Koophandel"
+    },
+
+    "issuing_authority_id": {
+      "type": "string",
+      "description": "Identifier for the issuing authority (e.g., EUID or internal KVK identifier).",
+      "example": "NL-KVK-00000001"
+    },
+
+    "date_of_issuance": {
+      "type": "string",
+      "description": "Timestamp when the credential was issued.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+      "example": "2025-11-21T11:05:00+01:00"
+    },
+
+    "date_of_expiry": {
+      "type": "string",
+      "description": "Optional expiration timestamp of this verification status.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+      "example": "2028-11-21T23:59:59+01:00"
+    },
+
+    "subject": {
+      "type": "object",
+      "description": "Information about the company receiving the Green Lane Verified status.",
+      "additionalProperties": false,
+      "required": [
+        "legal_person_name",
+        "legal_form",
+        "legal_person_id"
+      ],
+      "properties": {
+        "legal_person_name": {
+          "type": "string",
+          "description": "Official name of the company.",
+          "example": "Jansen Tech Solutions B.V."
+        },
+        "legal_form": {
+          "type": "string",
+          "description": "Legal form of the company.",
+          "example": "Besloten Vennootschap (BV)"
+        },
+        "legal_person_id": {
+          "type": "string",
+          "description": "Identifier of the legal entity (KVK number or EUID).",
+          "example": "12345678"
+        },
+        "legal_person_id_scheme": {
+          "type": "string",
+          "description": "Scheme used for the identifier, e.g., NL:KVK, EU:EUID.",
+          "example": "NL:KVK"
+        },
+        "registration_date": {
+          "type": "string",
+          "description": "Date the company was officially registered.",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "example": "2025-11-21"
+        },
+        "registration_country": {
+          "type": "string",
+          "description": "Country where the company is registered (ISO 3166-1 alpha-2).",
+          "example": "NL"
+        }
+      }
+    },
+
+    "green_lane": {
+      "type": "object",
+      "description": "Green Lane verification metadata.",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "criteria_version",
+        "based_on_notary_attestation"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["verified"],
+          "description": "Green Lane status: only 'verified' is allowed.",
+          "example": "verified"
+        },
+        "criteria_version": {
+          "type": "string",
+          "description": "Version of the Green Lane criteria applied.",
+          "example": "1.0"
+        },
+        "process_id": {
+          "type": "string",
+          "description": "Internal identifier for the Green Lane verification process.",
+          "example": "gl-2025-000045"
+        },
+        "based_on_notary_attestation": {
+          "type": "object",
+          "description": "Reference to the notary-issued incorporation attestation.",
+          "additionalProperties": false,
+          "required": ["vct", "attestation_id"],
+          "properties": {
+            "vct": {
+              "type": "string",
+              "const": "urn:org:fides:notary_incorporation_attestation:1",
+              "description": "The VCT of the notary attestation used as input.",
+              "example": "urn:org:fides:notary_incorporation_attestation:1"
+            },
+            "attestation_id": {
+              "type": "string",
+              "description": "Identifier of the notarial attestation (could be hash, UUID, or internal reference).",
+              "example": "notary-att-2025-000123"
+            }
+          }
+        }
+      }
+    }
+  }
+}
