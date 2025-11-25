@@ -89,8 +89,16 @@
       display: flex;
       flex-direction: column;
     }
+    .sidebar-header {
+      padding: 0.75rem 0.75rem 0.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+    }
     .sidebar-controls {
-      padding: 0.75rem;
+      padding: 0.25rem 0.75rem 0.75rem;
       border-bottom: 1px solid #e5e7eb;
       display: flex;
       gap: 0.5rem;
@@ -134,17 +142,34 @@
       background: #f9fafb;
     }
 
-    /* DETAILPANEEL – “friendly” */
+    /* INTRO SECTION */
+
+    .intro {
+      max-width: 780px;
+      margin-bottom: 1.25rem;
+    }
+    .intro-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .intro-text {
+      font-size: 0.9rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    /* DETAIL PANEL – “friendly” */
 
     .content h2 {
-      margin-top: 0;
+      margin-top: 0.75rem;
       margin-bottom: 0.25rem;
       font-size: 1.35rem;
     }
     .term-label {
       font-size: 0.95rem;
       color: #64748b;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
     }
     .description-text {
       font-size: 0.95rem;
@@ -158,7 +183,7 @@
       max-width: 720px;
     }
 
-    /* DETAILS BLOK (verstopt tech spul) */
+    /* DETAILS BLOCK (technical info) */
 
     details.details-block {
       margin-top: 1.2rem;
@@ -177,6 +202,11 @@
     details.details-block > summary::marker,
     details.details-block > summary::-webkit-details-marker {
       display: none;
+    }
+    .details-caption {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-left: 0.25rem;
     }
     .details-card {
       margin-top: 0.6rem;
@@ -220,7 +250,7 @@
     }
 
     .empty-state {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       color: #6b7280;
       font-size: 0.9rem;
     }
@@ -232,6 +262,15 @@
       border-top: 1px solid #e5e7eb;
       background: #f9fafb;
     }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
       main {
         flex-direction: column;
@@ -248,23 +287,24 @@
 <body>
   <header>
     <div class="brand">
-      <!-- Pas het pad/naam aan naar jouw logo-bestand -->
+      <!-- Adjust src to your logo filename if needed -->
       <img src="cfp-logo.png" alt="Clean Fuel Protocol logo" />
       <div>
         <div class="brand-title">Vocabulary</div>
-        <div class="brand-subtitle">Clean Fuel Protocol data fields</div>
+        <div class="brand-subtitle">Data fields used in the Clean Fuel Protocol</div>
       </div>
     </div>
     <div class="header-actions">
-      <span class="pill">JSON-LD vocab</span>
-      <a id="view-jsonld-link" href="#" target="_blank" rel="noreferrer">View JSON-LD</a>
+      <span class="pill">JSON-LD vocabulary</span>
+      <a id="view-jsonld-link" href="#" target="_blank" rel="noreferrer">View raw JSON-LD</a>
     </div>
   </header>
 
   <main>
     <aside class="sidebar">
+      <div class="sidebar-header">All fields</div>
       <div class="sidebar-controls">
-        <input id="search-input" type="search" placeholder="Search property…" />
+        <input id="search-input" type="search" placeholder="Search field name…" />
         <select id="type-filter">
           <option value="">All types</option>
         </select>
@@ -273,9 +313,19 @@
     </aside>
 
     <section class="content">
+      <div class="intro" id="intro-block">
+        <div class="intro-title">What is this page?</div>
+        <div class="intro-text">
+          This page explains all data fields that are part of the Clean Fuel Protocol vocabulary.
+          Use the list on the left to browse the fields. For each field you will see a plain-English
+          description here. If you build wallets, credentials or APIs, open the
+          <strong>Details</strong> section to view the technical JSON-LD definition.
+        </div>
+      </div>
+
       <div id="term-detail">
         <div class="empty-state">
-          Choose a property on the left to see what it means in the Clean Fuel Protocol.
+          Choose a field on the left to see what it means in the Clean Fuel Protocol.
         </div>
       </div>
     </section>
@@ -351,7 +401,7 @@
       if (!filtered.length) {
         const div = document.createElement("div");
         div.className = "empty-state";
-        div.textContent = "No properties found for your filters.";
+        div.textContent = "No fields found for your filters.";
         listEl.appendChild(div);
         return;
       }
@@ -397,10 +447,13 @@
 
     function renderTermDetail(key) {
       const container = document.getElementById("term-detail");
+      const intro = document.getElementById("intro-block");
+      intro.style.display = "block";
+
       const term = allTerms.find((t) => t.key === key);
       if (!term) {
         container.innerHTML =
-          '<div class="empty-state">Choose a property on the left to see what it means.</div>';
+          '<div class="empty-state">Choose a field on the left to see what it means.</div>';
         return;
       }
 
@@ -425,7 +478,7 @@
 
       const descBox = document.createElement("div");
       descBox.className = "description-text";
-      descBox.textContent = comment || "No description available yet for this field.";
+      descBox.textContent = comment || "No description is available yet for this field.";
       container.appendChild(descBox);
 
       const details = document.createElement("details");
@@ -433,6 +486,7 @@
       details.innerHTML = `
         <summary>
           Details
+          <span class="details-caption">Technical information for implementers</span>
         </summary>
         <div class="details-card">
           <div class="kv-row">
@@ -498,7 +552,7 @@
         renderTermDetail(activeKey);
       } else {
         document.getElementById("term-detail").innerHTML =
-          '<div class="empty-state">No terms found in @context.</div>';
+          '<div class="empty-state">No fields found in @context.</div>';
       }
     }
 
@@ -506,3 +560,4 @@
   </script>
 </body>
 </html>
+
