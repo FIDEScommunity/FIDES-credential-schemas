@@ -2,12 +2,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/schemas/clean-fuel/delivery/1/FIDES.fuelDelivery.schema.json",
   "title": "Clean Fuel Delivery",
-  "description": "This JSON Schema defines only the domain-specific claims inside `credentialSubject` for a Clean Fuel Delivery credential. It is intended for VCDM 2.0 credentials using SD-JWT as the proof mechanism.
-Base Verifiable Credential properties such as `@context`, `type`, `issuer`, `issuanceDate`, `validFrom`, `credentialSubject.id`, and `proof` are not included here and are handled by the issuing wallet or ecosystem.
-The semantic meaning of these properties is expected to be defined via JSON-LD contexts, including a Clean Fuel context and relevant UNTP vocabularies (e.g., UNTP Core and UNTP DTE).",
+  "description": "This JSON Schema defines only the domain-specific claims inside `credentialSubject` for a Clean Fuel Delivery credential. It is intended for VCDM 2.0 credentials using SD-JWT as the proof mechanism. Base Verifiable Credential properties such as `@context`, `type`, `issuer`, `issuanceDate`, `validFrom`, `credentialSubject.id`, and `proof` are not included here and are handled by the issuing wallet or ecosystem. The semantic meaning of these properties is expected to be defined via JSON-LD contexts, including a Clean Fuel context and relevant UNTP vocabularies (e.g., UNTP Core and UNTP DTE).",
   "type": "object",
   "properties": {
-    "properties": {
       "type": {
         "type": "string",
         "const": "urn:org:cfp.fuel-delivery:1",
