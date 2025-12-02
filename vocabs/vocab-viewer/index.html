@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clean Fuel Protocol – Vocabulary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #0f172a;
+      background: #f3f4f6;
+    }
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    header {
+      padding: 0.75rem 1.5rem;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0f172a;
+    }
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 0.15rem;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      align-items: center;
+    }
+    .header-actions a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .header-actions a:hover {
+      text-decoration: underline;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      color: #475569;
+    }
+
+    /* LAYOUT */
+
+    main {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+    .sidebar {
+      width: 260px;
+      max-width: 40%;
+      border-right: 1px solid #e5e7eb;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      padding: 0.75rem 0.75rem 0.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+    }
+    .sidebar-controls {
+      padding: 0.25rem 0.75rem 0.75rem;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .sidebar-controls input,
+    .sidebar-controls select {
+      font-size: 0.85rem;
+      padding: 0.35rem 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      flex: 1;
+    }
+    .sidebar-controls select {
+      flex: 0 0 110px;
+    }
+    .term-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .term-item {
+      padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid #f3f4f6;
+      cursor: pointer;
+    }
+    .term-item:hover {
+      background: #f9fafb;
+    }
+    .term-item.active {
+      background: #0f766e;
+      color: #ffffff;
+    }
+    .term-item .label {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .content {
+      flex: 1;
+      padding: 1.25rem 1.5rem;
+      overflow-y: auto;
+      background: #f9fafb;
+    }
+
+    /* INTRO SECTION */
+
+    .intro {
+      max-width: 780px;
+      margin-bottom: 1.25rem;
+    }
+    .intro-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .intro-text {
+      font-size: 0.9rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    /* DETAIL PANEL – “friendly” */
+
+    .content h2 {
+      margin-top: 0.75rem;
+      margin-bottom: 0.25rem;
+      font-size: 1.35rem;
+    }
+    .term-label {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 0.9rem;
+    }
+    .description-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #0f172a;
+      background: #ffffff;
+      border-radius: 0.9rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+      max-width: 720px;
+    }
+
+    /* DETAILS BLOCK (technical info) */
+
+    details.details-block {
+      margin-top: 1.2rem;
+      max-width: 720px;
+    }
+    details.details-block > summary {
+      list-style: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: #0f766e;
+      font-weight: 500;
+    }
+    details.details-block > summary::marker,
+    details.details-block > summary::-webkit-details-marker {
+      display: none;
+    }
+    .details-caption {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-left: 0.25rem;
+    }
+    .details-card {
+      margin-top: 0.6rem;
+      background: #ffffff;
+      border-radius: 0.9rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+      font-size: 0.85rem;
+    }
+    .kv-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .kv-key {
+      font-weight: 500;
+      color: #64748b;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.8rem;
+      background: #f8fafc;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid #e2e8f0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .btn {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #cbd5f5;
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #eff6ff;
+    }
+
+    .empty-state {
+      margin-top: 1.5rem;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      padding: 0.4rem 1.5rem;
+      border-top: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        max-width: none;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <!-- Adjust src to your logo filename if needed -->
+      <img src="cfp-logo.png" alt="Clean Fuel Protocol logo" />
+      <div>
+        <div class="brand-title">Vocabulary</div>
+        <div class="brand-subtitle">Data fields used in the Clean Fuel Protocol</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span class="pill">JSON-LD vocabulary</span>
+      <a id="view-jsonld-link" href="#" target="_blank" rel="noreferrer">View raw JSON-LD</a>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sidebar">
+      <div class="sidebar-header">All fields</div>
+      <div class="sidebar-controls">
+        <input id="search-input" type="search" placeholder="Search field name…" />
+        <select id="type-filter">
+          <option value="">All types</option>
+        </select>
+      </div>
+      <div class="term-list" id="term-list"></div>
+    </aside>
+
+    <section class="content">
+      <div class="intro" id="intro-block">
+        <div class="intro-title">What is this page?</div>
+        <div class="intro-text">
+          This page explains all data fields that are part of the Clean Fuel Protocol vocabulary.
+          Use the list on the left to browse the fields. For each field you will see a plain-English
+          description here. If you build wallets, credentials or APIs, open the
+          <strong>Details</strong> section to view the technical JSON-LD definition.
+        </div>
+      </div>
+
+      <div id="term-detail">
+        <div class="empty-state">
+          Choose a field on the left to see what it means in the Clean Fuel Protocol.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Clean Fuel Protocol – human-friendly view on the JSON-LD vocabulary.
+  </footer>
+
+  <script>
+    // --- configuration ---
+    const DEFAULT_VOCAB_URL =
+      "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vocabs/clean-fuel.vocab.jsonld";
+
+    // --- helpers ---
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).catch(console.error);
+    }
+
+    function normaliseContext(value) {
+      if (Array.isArray(value)) {
+        return Object.assign(
+          {},
+          ...value.filter((v) => typeof v === "object" && !Array.isArray(v))
+        );
+      }
+      if (typeof value === "object" && value !== null) {
+        return value;
+      }
+      return {};
+    }
+
+    function extractTerms(ctx) {
+      const terms = [];
+      for (const [key, val] of Object.entries(ctx)) {
+        if (typeof val === "object" && val !== null && ("@id" in val || "@type" in val)) {
+          const label = val["rdfs:label"] || val["label"] || "";
+          const comment = val["rdfs:comment"] || val["comment"] || "";
+          const type = val["@type"] || "";
+          terms.push({ key, label, comment, type, raw: val });
+        }
+      }
+      terms.sort((a, b) => a.key.localeCompare(b.key));
+      return terms;
+    }
+
+    // --- state ---
+    let allTerms = [];
+    let activeKey = null;
+    let vocabUrl = getQueryParam("vocab") || DEFAULT_VOCAB_URL;
+    let rawJson = null;
+
+    // --- rendering ---
+    function renderTermList() {
+      const listEl = document.getElementById("term-list");
+      const search = document.getElementById("search-input").value.toLowerCase();
+      const typeFilter = document.getElementById("type-filter").value;
+
+      listEl.innerHTML = "";
+
+      const filtered = allTerms.filter((t) => {
+        const hay = (t.key + " " + t.label + " " + t.comment).toLowerCase();
+        const matchesSearch = !search || hay.includes(search);
+        const matchesType = !typeFilter || t.type === typeFilter;
+        return matchesSearch && matchesType;
+      });
+
+      if (!filtered.length) {
+        const div = document.createElement("div");
+        div.className = "empty-state";
+        div.textContent = "No fields found for your filters.";
+        listEl.appendChild(div);
+        return;
+      }
+
+      filtered.forEach((term) => {
+        const item = document.createElement("div");
+        item.className = "term-item" + (term.key === activeKey ? " active" : "");
+        item.dataset.key = term.key;
+
+        const title = document.createElement("div");
+        title.textContent = term.key;
+
+        const label = document.createElement("div");
+        label.className = "label";
+        label.textContent = term.label || "";
+
+        item.appendChild(title);
+        if (label.textContent) item.appendChild(label);
+
+        item.addEventListener("click", () => {
+          activeKey = term.key;
+          renderTermList();
+          renderTermDetail(term.key);
+        });
+
+        listEl.appendChild(item);
+      });
+    }
+
+    function renderTypeFilter() {
+      const select = document.getElementById("type-filter");
+      const types = Array.from(new Set(allTerms.map((t) => t.type).filter(Boolean))).sort();
+      while (select.options.length > 1) {
+        select.remove(1);
+      }
+      types.forEach((t) => {
+        const opt = document.createElement("option");
+        opt.value = t;
+        opt.textContent = t;
+        select.appendChild(opt);
+      });
+    }
+
+    function renderTermDetail(key) {
+      const container = document.getElementById("term-detail");
+      const intro = document.getElementById("intro-block");
+      intro.style.display = "block";
+
+      const term = allTerms.find((t) => t.key === key);
+      if (!term) {
+        container.innerHTML =
+          '<div class="empty-state">Choose a field on the left to see what it means.</div>';
+        return;
+      }
+
+      const fullIri = term.raw["@id"] || "";
+      const datatype = term.type || "";
+      const label = term.label || "";
+      const comment = term.comment || "";
+      const suggestedKey = term.key;
+
+      container.innerHTML = "";
+
+      const title = document.createElement("h2");
+      title.textContent = term.key;
+      container.appendChild(title);
+
+      if (label) {
+        const subtitle = document.createElement("div");
+        subtitle.className = "term-label";
+        subtitle.textContent = label;
+        container.appendChild(subtitle);
+      }
+
+      const descBox = document.createElement("div");
+      descBox.className = "description-text";
+      descBox.textContent = comment || "No description is available yet for this field.";
+      container.appendChild(descBox);
+
+      const details = document.createElement("details");
+      details.className = "details-block";
+      details.innerHTML = `
+        <summary>
+          Details
+          <span class="details-caption">Technical information for implementers</span>
+        </summary>
+        <div class="details-card">
+          <div class="kv-row">
+            <div class="kv-key">Full IRI</div>
+            <div>
+              <div class="mono">${fullIri}</div>
+            </div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Datatype</div>
+            <div>${datatype ? `<span class="pill">${datatype}</span>` : "—"}</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Suggested key</div>
+            <div class="mono">${suggestedKey}</div>
+          </div>
+          <div style="margin-top:0.6rem; margin-bottom:0.25rem; font-weight:500; color:#64748b;">
+            JSON-LD definition
+          </div>
+          <pre class="mono" id="json-snippet"></pre>
+          <button class="btn" id="copy-snippet-btn" type="button">Copy JSON snippet</button>
+        </div>
+      `;
+      container.appendChild(details);
+
+      const snippetPre = details.querySelector("#json-snippet");
+      snippetPre.textContent = JSON.stringify(term.raw, null, 2);
+
+      const copySnippetBtn = details.querySelector("#copy-snippet-btn");
+      copySnippetBtn.addEventListener("click", () => copyToClipboard(snippetPre.textContent));
+    }
+
+    function renderMeta() {
+      const link = document.getElementById("view-jsonld-link");
+      link.href = vocabUrl;
+    }
+
+    // --- init ---
+    async function init() {
+      renderMeta();
+      document.getElementById("search-input").addEventListener("input", renderTermList);
+      document.getElementById("type-filter").addEventListener("change", renderTermList);
+
+      try {
+        const res = await fetch(vocabUrl);
+        rawJson = await res.json();
+      } catch (e) {
+        console.error(e);
+        document.getElementById("term-detail").innerHTML =
+          '<div class="empty-state">Failed to load vocabulary JSON-LD.</div>';
+        return;
+      }
+
+      const ctx = normaliseContext(rawJson["@context"]);
+      allTerms = extractTerms(ctx);
+
+      renderTypeFilter();
+      renderTermList();
+
+      if (allTerms.length) {
+        activeKey = allTerms[0].key;
+        renderTermList();
+        renderTermDetail(activeKey);
+      } else {
+        document.getElementById("term-detail").innerHTML =
+          '<div class="empty-state">No fields found in @context.</div>';
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
+
