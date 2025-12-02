@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/iscc-cert/1/FIDES.isccCert.schema.json",
+  "title": "ISCC Certificate (Demo Version)",
+  "description": "A simplified ISCC certificate credential for demo purposes. Contains only essential information issued by an ISCC Certification Body (CB).",
+  "type": "object",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "description": "The Verifiable Credential Type (VCT) for this ISCC demo certificate.",
+      "const": "urn:org:iscc.iscc-cert:1",
+      "example": "urn:org:iscc.iscc-cert:1"
+    },
+    "certificateNumber": {
+      "type": "string",
+      "description": "The official ISCC certificate number.",
+      "example": "EU-ISCC-Cert-FR220-12345678"
+    },
+    "systemUserCertificate": {
+      "type": "string",
+      "description": "The certificate ID as shown on the official ISCC PDF (may differ from the certificate number).",
+      "example": "CERT-ARGENT-2025-01"
+    },
+    "scheme": {
+      "type": "string",
+      "description": "The ISCC scheme applicable to this certificate.",
+      "enum": [
+        "ISCC EU",
+        "ISCC PLUS"
+      ],
+      "example": "ISCC EU"
+    },
+    "validFrom": {
+      "type": "string",
+      "description": "Start date of certificate validity (DD-MM-YYYY).",
+      "pattern": "^[0-3][0-9]-[0-1][0-9]-[0-9]{4}$",
+      "example": "20-02-2025"
+    },
+    "validUntil": {
+      "type": "string",
+      "description": "End date of certificate validity (DD-MM-YYYY).",
+      "pattern": "^[0-3][0-9]-[0-1][0-9]-[0-9]{4}$",
+      "example": "20-02-2026"
+    },
+    "systemUserName": {
+      "type": "string",
+      "description": "Official name of the certified company.",
+      "example": "Argent Energy"
+    },
+    "systemUserNumber": {
+      "type": "string",
+      "description": "The official ISCC System User Number (SUN).",
+      "example": "ISCC-SU-123456789"
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code where the certificate applies.",
+      "example": "NL"
+    },
+    "certificationBody": {
+      "type": "string",
+      "description": "Name of the ISCC-recognised Certification Body (CB) that issued this certificate.",
+      "example": "Bureau Veritas"
+    }
+  },
+  "required": [
+    "vct",
+    "certificateNumber",
+    "scheme",
+    "validFrom",
+    "validUntil",
+    "systemUserName",
+    "country",
+    "certificationBody"
+  ]
+}

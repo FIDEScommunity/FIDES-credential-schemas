@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/rev-user/1/FIDES.revUser.schema.json",
+  "title": "NEa REV User Credential",
+  "description": "A minimal Verifiable Credential issued by the Dutch Emissions Authority (NEa) confirming that an organisation is a registered user of the Register Energie voor Vervoer (REV).",
+  "type": "object",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "description": "The Verifiable Credential Type uniquely identifying this credential.",
+      "const": "urn:nl:nea.rev-user:1",
+      "example": "urn:nl:nea.rev-user:1"
+    },
+    "revUserName": {
+      "type": "string",
+      "description": "Official name of the organisation as registered in the REV.",
+      "example": "Van Kessel Olie B.V."
+    },
+    "revUserNumber": {
+      "type": "string",
+      "description": "The unique organisation identifier used by NEa in the REV (REV user number).",
+      "example": "REV-ORG-012345"
+    },
+    "revRoles": {
+      "type": "array",
+      "description": "De rol(len) van de organisatie binnen het REV, zoals erkend door de NEa.",
+      "items": {
+        "type": "string",
+        "description": "Een REV-rol die aan de organisatie is toegekend.",
+        "enum": [
+          "leveringsplichtigePartij",
+          "hbeProducent",
+          "hbeHandelaar",
+          "overig"
+        ],
+        "example": "leveringsplichtigePartij"
+      }
+    },
+    "registrationDate": {
+      "type": "string",
+      "description": "Datum waarop de organisatie als REV-gebruiker is geregistreerd (DD-MM-YYYY).",
+      "pattern": "^[0-3][0-9]-[0-1][0-9]-[0-9]{4}$",
+      "example": "20-02-2023"
+    }
+  },
+  "required": [
+    "vct",
+    "revUserName",
+    "revUserNumber"
+  ]
+}

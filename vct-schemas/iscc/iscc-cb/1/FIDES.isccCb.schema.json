@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/iscc/iscc-cb/1/FIDES.isccCb.schema.json",
+  "title": "ISCC Certification Body Credential",
+  "description": "This schema defines a Verifiable Credential with the ISCC recognition details of a Certification Body (CB). It only contains domain-specific claims and is intended to be combined with a base SD-JWT VC layer by the wallet or ecosystem.",
+  "type": "object",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "description": "The Verifiable Credential Type (VCT) that identifies this ISCC Certification Body credential. Required. Example: urn:org:iscc.iscc-cb:1",
+      "const": "urn:org:iscc.iscc-cb:1",
+      "example": "urn:org:iscc.iscc-cb:1"
+    },
+    "cbName": {
+      "type": "string",
+      "description": "The official name of the ISCC Certification Body (CB). Required. Example: DEKRA Certification B.V.",
+      "example": "DEKRA Certification B.V."
+    },
+    "cbId": {
+      "type": "string",
+      "description": "The ISCC-internal Certification Body identifier or another stable ID used by ISCC to reference this CB. Required. Example: ISCC-CB-220",
+      "example": "ISCC-CB-220"
+    },
+    "legalPersonId": {
+      "type": "string",
+      "description": "The official registration identifier of the Certification Body, such as EUID, VAT number, or Chamber of Commerce number. Optional. Example: NL123456789B01",
+      "example": "NL123456789B01"
+    },
+    "isccSchemes": {
+      "type": "array",
+      "description": "The ISCC schemes for which this Certification Body is officially recognised. Required. Typical values include: ISCC EU, ISCC PLUS, ISCC CORSIA.",
+      "items": {
+        "type": "string",
+        "description": "An ISCC scheme name.",
+        "example": "ISCC EU",
+        "enum": [
+          "ISCC EU",
+          "ISCC PLUS",
+          "ISCC CORSIA"
+        ]
+      }
+    },
+    "recognitionStatus": {
+      "type": "string",
+      "description": "The current ISCC recognition status of the Certification Body. Required. Example: active",
+      "enum": [
+        "active",
+        "suspended",
+        "withdrawn"
+      ],
+      "example": "active"
+    },
+    "recognitionDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date on which the Certification Body was first recognised by ISCC for the relevant schemes. Required. ISO 8601 date format (YYYY-MM-DD). Example: 2024-05-20",
+      "example": "2024-05-20"
+    },
+    "recognitionExpiry": {
+      "type": "string",
+      "format": "date",
+      "description": "The expiry date of the current ISCC recognition, if applicable. ISO 8601 date format (YYYY-MM-DD). Example: 2027-05-20",
+      "example": "2027-05-20"
+    },
+    "regions": {
+      "type": "array",
+      "description": "The regions and/or countries in which this Certification Body is allowed to perform ISCC audits. Values can be regional labels (e.g. EU, Europe, Global) or ISO 3166-1 alpha-2 country codes (e.g. NL, DE). Optional.",
+      "items": {
+        "type": "string",
+        "description": "A region label or ISO 3166-1 alpha-2 country code.",
+        "example": "EU"
+      }
+    },
+    "scopes": {
+      "type": "array",
+      "description": "The audit scopes for which this Certification Body is recognised under ISCC (for example, traceability, waste & residues, GHG verification, RFNBO/SAF). Optional.",
+      "items": {
+        "type": "string",
+        "description": "A recognised ISCC audit scope.",
+        "example": "Waste & Residues"
+      }
+    },
+    "officialWebsite": {
+      "type": "string",
+      "format": "uri",
+      "description": "The official website of the Certification Body. Optional. Example: https://www.dekra-certification.nl",
+      "example": "https://www.dekra-certification.nl"
+    },
+    "certificateLookup": {
+      "type": "string",
+      "format": "uri",
+      "description": "A public URL where ISCC certificates or audit information for this CB or its clients can be looked up. Optional. Example: https://certificates.iscc-system.org",
+      "example": "https://certificates.iscc-system.org"
+    }
+  },
+  "required": [
+    "vct",
+    "cbName",
+    "cbId",
+    "isccSchemes",
+    "recognitionStatus",
+    "recognitionDate"
+  ]
+}
