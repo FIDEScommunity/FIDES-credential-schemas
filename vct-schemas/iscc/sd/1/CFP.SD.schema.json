@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fidescommunity.github.io/FIDES-credential-schemas/schemas/iscc/sd/1/FIDES.SD.schema.json",
+  "title": "Clean Fuel Sustainability Declaration (SD) \u2013 Light",
+  "description": "Light variant of the Clean Fuel Sustainability Declaration (SD) JSON Schema. This version is intended for early pilots and prototypes and focuses on a minimal subset of fields that are most critical for linking SDs to PoS and to physical batches. It follows the same naming conventions as the full SD schema and the PoS schema.",
+  "type": "object",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:cfp.sd:1",
+      "description": "Verifiable Credential Data Model Type identifier for the Sustainability Declaration attestation, as defined by the Clean Fuel Protocol (CFP)."
+    },
+    "sdNumber": {
+      "type": "string",
+      "description": "Unique number of the Sustainability Declaration as issued under the sustainability scheme.",
+      "example": "ISCC-EU-SD-2025-00012345"
+    },
+    "sdIssuanceDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of issuance of the Sustainability Declaration, as stated on the ISCC SD form.",
+      "example": "2025-02-10"
+    },
+    "scheme": {
+      "type": "string",
+      "description": "Name of the sustainability certification scheme.",
+      "example": "ISCC EU"
+    },
+    "schemeVersion": {
+      "type": "string",
+      "description": "Version of the sustainability certification scheme.",
+      "example": "4.0"
+    },
+    "ISCCcertificateNumber": {
+      "type": "string",
+      "description": "Certificate registration number under the sustainability scheme (e.g. ISCC certificate number of the certified supplier).",
+      "example": "ISCC-EU-CERT-DE123-12345678"
+    },
+    "supplierName": {
+      "type": "string",
+      "description": "Name of the certified supplier issuing this Sustainability Declaration.",
+      "example": "ACME Biofuels GmbH"
+    },
+    "supplierIdentifier": {
+      "type": "string",
+      "description": "Business identifier of the supplier, such as KVK, VAT/BTW, SIREN, SIRET, GLN, or other trade identifiers.",
+      "example": "KVK:81234567"
+    },
+    "supplierDid": {
+      "type": "string",
+      "description": "DID of the supplier (organisation wallet) issuing this Sustainability Declaration.",
+      "example": "did:web:wallet.acme-biofuels.com"
+    },
+    "recipientName": {
+      "type": "string",
+      "description": "Name of the recipient of the sustainable material, as stated on the Sustainability Declaration.",
+      "example": "Future Fuels BV"
+    },
+    "recipientIdentifier": {
+      "type": "string",
+      "description": "Business identifier of the recipient, such as KVK, VAT/BTW, GLN, etc.",
+      "example": "KVK:90123456"
+    },
+    "recipientDid": {
+      "type": "string",
+      "description": "DID of the recipient organisation (organisation wallet) to which this Sustainability Declaration applies.",
+      "example": "did:web:wallet.futurefuels.example"
+    },
+    "recipientAddress": {
+      "type": "string",
+      "description": "Postal address or place of destination (location of the recipient) as stated on the Sustainability Declaration.",
+      "example": "Harbour Road 10, 3089 Rotterdam, NL"
+    },
+    "dateOfDispatch": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of dispatch of the sustainable material as recorded on the Sustainability Declaration.",
+      "example": "2025-02-12"
+    },
+    "productType": {
+      "type": "string",
+      "description": "Type of product, e.g. raw material or intermediate product such as crude oil.",
+      "example": "raw material"
+    },
+    "rawMaterialType": {
+      "type": "string",
+      "description": "Type of raw material as defined in the Sustainability Declaration (ideally selected from the ISCC raw material list).",
+      "example": "Used cooking oil"
+    },
+    "countryOfOrigin": {
+      "type": "string",
+      "description": "Country of origin of the raw material, ISO 3166-1 alpha-2 code.",
+      "example": "DE",
+      "minLength": 2,
+      "maxLength": 2
+    },
+    "quantity": {
+      "type": "number",
+      "description": "Quantity of sustainable material covered by this Sustainability Declaration.",
+      "example": 25000
+    },
+    "quantityUnit": {
+      "type": "string",
+      "description": "Unit of the material quantity.",
+      "enum": [
+        "t",
+        "kg",
+        "L",
+        "l",
+        "m3"
+      ],
+      "example": "t"
+    },
+    "isccCompliantMaterial": {
+      "type": "boolean",
+      "description": "Indicates that the material is \"ISCC Compliant material\" according to the ISCC template."
+    },
+    "euRedCompliantMaterial": {
+      "type": "boolean",
+      "description": "Indicates that the material is \"EU RED Compliant material\" according to the ISCC template."
+    },
+    "chainOfCustodyOption": {
+      "type": "string",
+      "description": "Chain of custody option applied to this material as recorded on the Sustainability Declaration.",
+      "example": "Mass Balance"
+    },
+    "isWasteOrResidue": {
+      "type": "boolean",
+      "description": "Indicates that the raw material meets the definition of waste or residue according to RED III."
+    },
+    "totalDefaultGhgValueApplied": {
+      "type": "boolean",
+      "description": "Indicates that a total default value according to RED III was applied for the GHG emission calculation."
+    },
+    "ghgCalculationUnit": {
+      "type": "string",
+      "description": "Unit used for the GHG emission calculation for raw materials and intermediate products. Default is kgCO2eq/dry-ton.",
+      "default": "kgCO2eq/dry-ton",
+      "example": "kgCO2eq/dry-ton"
+    }
+  },
+  "required": [
+    "sdNumber",
+    "scheme",
+    "ISCCcertificateNumber",
+    "supplierName",
+    "supplierIdentifier",
+    "recipientName",
+    "countryOfOrigin",
+    "rawMaterialType",
+    "quantity",
+    "quantityUnit",
+    "dateOfDispatch"
+  ]
+}
