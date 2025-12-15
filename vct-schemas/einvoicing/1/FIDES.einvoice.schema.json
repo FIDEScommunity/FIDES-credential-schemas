@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/einvoice/1/FIDES.invoice.schema.json",
+  "title": "FIDES eInvoice Attestation (SD-JWT VC, flat schema)",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for the eInvoice attestation as a single, flat JSON object. It is based on UBL attributes and aligned with the IETF SD-JWT VC data model: generic SD-JWT VC claims (iss, sub, vct, iat, nbf, exp, jti, cnf) are defined alongside the domain-specific LPID claims. Implementations may conceptually treat this as a layered model (base + domain), but the structure is flat for systems that expect a single JSON Schema document, such as current organizational wallet templates.",
+  "type": "object",
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:einvoice:1"
+    },
+    "invoice_id": {
+      "description": "The id of the invoice",
+      "type": "string"
+    },
+    "invoice_date": {
+      "description": "The invoice date",
+      "type": "string",
+      "format": "date"
+    },
+    "due_date": {
+      "description": "Due date of the invoice",
+      "type": "string",
+      "format": "date"
+    },
+    "currency_code": {
+      "description": "Currency code of the invoice, as defined in ISO 4217:2015",
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "tax_exclusive_amount": {
+      "description": "Amount of the invoice excluding taxes",
+      "type": "number"
+    },
+    "tax_amount": {
+      "description": "Tax amount of the invoice",
+      "type": "number"
+    },
+    "tax_inclusive_amount": {
+      "description": "Amount of the invoice including taxes",
+      "type": "number"
+    },
+    "evidence": {
+      "description": "The original evidence documents, such as the UBL 2.0 invoice",
+      "type": "array",
+         "items": {
+           "type": "object",
+           "properties": {
+             "id": {
+               "description": "The uri to the original document",
+               "type": "string",
+               "format": "uri"
+             },
+             "type": {
+               "description": "The type of document",
+               "type": "array",
+               "items": { "type": "string" }
+             },
+             "name": {
+               "description": "The name of the document",
+               "type": "string"
+             },
+             "description": {
+               "description": "Description of the document",
+               "type": "string"
+             },
+             "digestMultibase": {
+               "description": "Digest of the document",
+               "type": "string"
+             }
+           },
+           "required": ["id", "type", "name", "digestMultibase"]
+         }
+     }
+  },
+  "required": [
+    "invoice_id",
+    "invoice_date",
+    "due_date",
+    "currency_code",
+    "tax_exclusive_amount",
+    "tax_amount",
+    "tax_inclusive_amount",
+    "evidence"
+  ]
+}
