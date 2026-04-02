@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/verifiable-bank-statement/1/FIDES.verifiable-bank-statement.schema.json",
+  "title": "Verifiable Bank Statement Credential",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential issued by a bank, containing a verifiable bank statement for a specific account and statement period.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "vct",
+    "issuing_authority",
+    "subject",
+    "bank_statement",
+    "date_of_issuance"
+  ],
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:verifiable_bank_statement:1",
+      "description": "The Verifiable Credential Type identifier for the Verifiable Bank Statement credential.",
+      "example": "urn:org:fides:verifiable_bank_statement:1"
+    },
+    "issuing_authority": {
+      "type": "string",
+      "description": "Name of the bank issuing this credential.",
+      "example": "Banqup Bank"
+    },
+    "issuing_authority_id": {
+      "type": "string",
+      "description": "Identifier for the issuing bank.",
+      "example": "bank-banq-eu-001"
+    },
+    "date_of_issuance": {
+      "type": "string",
+      "description": "Timestamp when the credential was issued.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+      "example": "2026-04-02T10:00:00+02:00"
+    },
+    "date_of_expiry": {
+      "type": "string",
+      "description": "Optional expiration timestamp of this credential.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+      "example": "2026-10-02T23:59:59+02:00"
+    },
+    "subject": {
+      "type": "object",
+      "description": "Information about the account holder to whom this bank statement relates.",
+      "additionalProperties": false,
+      "required": [
+        "account_holder_name",
+        "account_number"
+      ],
+      "properties": {
+        "account_holder_name": {
+          "type": "string",
+          "description": "Name of the account holder.",
+          "example": "Demo Company B.V."
+        },
+        "account_holder_id": {
+          "type": "string",
+          "description": "Identifier of the account holder.",
+          "example": "12345678"
+        },
+        "account_holder_id_scheme": {
+          "type": "string",
+          "description": "Scheme used for the account holder identifier, e.g. NL:KVK, EU:EUID, LEI.",
+          "example": "NL:KVK"
+        },
+        "account_number": {
+          "type": "string",
+          "description": "Bank account number to which the statement applies, e.g. IBAN.",
+          "example": "NL91ABNA0417164300"
+        },
+        "account_number_scheme": {
+          "type": "string",
+          "description": "Scheme used for the account number.",
+          "example": "IBAN"
+        }
+      }
+    },
+    "bank_statement": {
+      "type": "object",
+      "description": "Bank statement details covering a specific period.",
+      "additionalProperties": false,
+      "required": [
+        "statement_id",
+        "statement_period",
+        "opening_balance",
+        "closing_balance",
+        "transactions"
+      ],
+      "properties": {
+        "statement_id": {
+          "type": "string",
+          "description": "Unique identifier of the bank statement.",
+          "example": "stmt-2026-04-0001"
+        },
+        "statement_number": {
+          "type": "string",
+          "description": "Human-readable statement number if provided by the bank.",
+          "example": "2026-04-01"
+        },
+        "statement_period": {
+          "type": "object",
+          "description": "Period covered by this statement.",
+          "additionalProperties": false,
+          "required": [
+            "from_date",
+            "to_date"
+          ],
+          "properties": {
+            "from_date": {
+              "type": "string",
+              "description": "Start date of the statement period.",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "example": "2026-03-01"
+            },
+            "to_date": {
+              "type": "string",
+              "description": "End date of the statement period.",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "example": "2026-03-31"
+            }
+          }
+        },
+        "opening_balance": {
+          "type": "object",
+          "description": "Opening balance at the start of the statement period.",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number",
+              "description": "Opening balance amount.",
+              "example": 12500.75
+            },
+            "currency": {
+              "type": "string",
+              "description": "ISO 4217 currency code.",
+              "pattern": "^[A-Z]{3}$",
+              "example": "EUR"
+            }
+          }
+        },
+        "closing_balance": {
+          "type": "object",
+          "description": "Closing balance at the end of the statement period.",
+          "additionalProperties": false,
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number",
+              "description": "Closing balance amount.",
+              "example": 14320.1
+            },
+            "currency": {
+              "type": "string",
+              "description": "ISO 4217 currency code.",
+              "pattern": "^[A-Z]{3}$",
+              "example": "EUR"
+            }
+          }
+        },
+        "transactions": {
+          "type": "array",
+          "description": "Transactions included in the bank statement.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "transaction_id",
+              "booking_date",
+              "amount",
+              "currency",
+              "direction"
+            ],
+            "properties": {
+              "transaction_id": {
+                "type": "string",
+                "description": "Unique identifier of the transaction.",
+                "example": "txn-2026-000245"
+              },
+              "entry_reference": {
+                "type": "string",
+                "description": "Original bank entry reference if available.",
+                "example": "NTRF20260401001"
+              },
+              "booking_date": {
+                "type": "string",
+                "description": "Date on which the transaction was booked and became visible on the account.",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "example": "2026-03-15"
+              },
+              "value_date": {
+                "type": "string",
+                "description": "Date on which the transaction amount became effective for financial purposes such as interest or balance calculation.",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "example": "2026-03-15"
+              },
+              "amount": {
+                "type": "number",
+                "description": "Transaction amount.",
+                "example": 1850.0
+              },
+              "currency": {
+                "type": "string",
+                "description": "ISO 4217 currency code.",
+                "pattern": "^[A-Z]{3}$",
+                "example": "EUR"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "credit",
+                  "debit"
+                ],
+                "description": "Direction of the transaction from the perspective of the subject account.",
+                "example": "credit"
+              },
+              "counterparty_name": {
+                "type": "string",
+                "description": "Name of the counterparty.",
+                "example": "Customer X B.V."
+              },
+              "counterparty_account_number": {
+                "type": "string",
+                "description": "Counterparty account number if available.",
+                "example": "NL12RABO0123456789"
+              },
+              "counterparty_account_scheme": {
+                "type": "string",
+                "description": "Scheme used for the counterparty account number.",
+                "example": "IBAN"
+              },
+              "payment_reference": {
+                "type": "string",
+                "description": "Payment reference associated with the transaction.",
+                "example": "INV-2026-0045"
+              },
+              "remittance_information": {
+                "type": "string",
+                "description": "Remittance or unstructured payment information.",
+                "example": "Payment invoice INV-2026-0045"
+              },
+              "related_credential_id": {
+                "type": "string",
+                "description": "Optional identifier of a related Verifiable Payment or Verifiable Payment Receipt credential.",
+                "example": "vc-pay-2026-0045"
+              }
+            }
+          }
+        },
+        "source_format": {
+          "type": "string",
+          "description": "Original source format from which this statement may have been derived.",
+          "enum": [
+            "MT940",
+            "CAMT.053",
+            "CSV",
+            "API",
+            "OTHER"
+          ],
+          "example": "MT940"
+        },
+        "source_reference": {
+          "type": "string",
+          "description": "Reference to the original bank export or internal source record.",
+          "example": "export-2026-03-31-001"
+        }
+      }
+    }
+  }
+}
