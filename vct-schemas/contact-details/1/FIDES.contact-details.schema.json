@@ -4,7 +4,6 @@
   "title": "Contact Details",
   "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential for Contact Details (verified email and phone number) attestation as a single, flat JSON object.",
   "type": "object",
-  "required": ["type", "version"],
   "properties": {
     "vct": {
       "type": "string",
