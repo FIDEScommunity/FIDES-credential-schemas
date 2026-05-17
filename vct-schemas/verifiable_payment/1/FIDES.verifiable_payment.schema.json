@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/verifiable-payment/1/FIDES.verifiable-payment.schema.json",
+  "title": "Verifiable Payment Credential",
+  "description": "This schema represents the claim set of an SD-JWT based Verifiable Credential issued by a bank, containing verifiable proof of an outgoing payment.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "vct",
+    "issuing_authority",
+    "subject",
+    "payment",
+    "date_of_issuance"
+  ],
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:verifiable_payment:1",
+      "description": "The Verifiable Credential Type identifier for the Verifiable Payment credential.",
+      "example": "urn:org:fides:verifiable_payment:1"
+    },
+    "issuing_authority": {
+      "type": "string",
+      "description": "Name of the bank issuing this credential.",
+      "example": "Banqup Bank"
+    },
+    "issuing_authority_id": {
+      "type": "string",
+      "description": "Identifier for the issuing bank.",
+      "example": "bank-banq-eu-001"
+    },
+    "date_of_issuance": {
+      "type": "string",
+      "description": "Timestamp when the credential was issued.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+      "example": "2026-04-02T10:05:00+02:00"
+    },
+    "date_of_expiry": {
+      "type": "string",
+      "description": "Optional expiration timestamp of this credential.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?[+-]\\d{2}:\\d{2}$",
+      "example": "2026-10-02T23:59:59+02:00"
+    },
+    "subject": {
+      "type": "object",
+      "description": "Information about the payer account holder for whom this proof of payment is issued.",
+      "additionalProperties": false,
+      "required": [
+        "account_holder_name",
+        "account_number"
+      ],
+      "properties": {
+        "account_holder_name": {
+          "type": "string",
+          "description": "Name of the payer account holder.",
+          "example": "Demo Company B.V."
+        },
+        "account_holder_id": {
+          "type": "string",
+          "description": "Identifier of the payer account holder.",
+          "example": "12345678"
+        },
+        "account_holder_id_scheme": {
+          "type": "string",
+          "description": "Scheme used for the account holder identifier, e.g. NL:KVK, EU:EUID, LEI.",
+          "example": "NL:KVK"
+        },
+        "account_number": {
+          "type": "string",
+          "description": "Payer account number, e.g. IBAN.",
+          "example": "NL91ABNA0417164300"
+        },
+        "account_number_scheme": {
+          "type": "string",
+          "description": "Scheme used for the account number.",
+          "example": "IBAN"
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "description": "Details of the outgoing payment.",
+      "additionalProperties": false,
+      "required": [
+        "transaction_id",
+        "booking_date",
+        "amount",
+        "currency",
+        "payer",
+        "payee",
+        "status"
+      ],
+      "properties": {
+        "transaction_id": {
+          "type": "string",
+          "description": "Unique identifier of the payment transaction.",
+          "example": "txn-2026-000245"
+        },
+        "end_to_end_id": {
+          "type": "string",
+          "description": "End-to-end payment identifier if available.",
+          "example": "e2e-2026-0045"
+        },
+        "payment_reference": {
+          "type": "string",
+          "description": "Reference associated with the payment.",
+          "example": "INV-2026-0045"
+        },
+        "booking_date": {
+          "type": "string",
+          "description": "Date on which the payment was booked and became visible on the payer account.",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "example": "2026-03-15"
+        },
+        "value_date": {
+          "type": "string",
+          "description": "Date on which the payment amount became effective for financial purposes such as interest or balance calculation.",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "example": "2026-03-15"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Paid amount.",
+          "example": 1850.0
+        },
+        "currency": {
+          "type": "string",
+          "description": "ISO 4217 currency code.",
+          "pattern": "^[A-Z]{3}$",
+          "example": "EUR"
+        },
+        "payer": {
+          "type": "object",
+          "description": "Party making the payment.",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "account_number"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the payer.",
+              "example": "Demo Company B.V."
+            },
+            "identifier": {
+              "type": "string",
+              "description": "Identifier of the payer.",
+              "example": "12345678"
+            },
+            "identifier_scheme": {
+              "type": "string",
+              "description": "Scheme used for the payer identifier.",
+              "example": "NL:KVK"
+            },
+            "account_number": {
+              "type": "string",
+              "description": "Payer account number.",
+              "example": "NL91ABNA0417164300"
+            },
+            "account_number_scheme": {
+              "type": "string",
+              "description": "Scheme used for the payer account number.",
+              "example": "IBAN"
+            }
+          }
+        },
+        "payee": {
+          "type": "object",
+          "description": "Party receiving the payment.",
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the payee.",
+              "example": "Supplier Y B.V."
+            },
+            "identifier": {
+              "type": "string",
+              "description": "Identifier of the payee.",
+              "example": "87654321"
+            },
+            "identifier_scheme": {
+              "type": "string",
+              "description": "Scheme used for the payee identifier.",
+              "example": "NL:KVK"
+            },
+            "account_number": {
+              "type": "string",
+              "description": "Payee account number if available.",
+              "example": "NL12RABO0123456789"
+            },
+            "account_number_scheme": {
+              "type": "string",
+              "description": "Scheme used for the payee account number.",
+              "example": "IBAN"
+            }
+          }
+        },
+        "remittance_information": {
+          "type": "string",
+          "description": "Remittance or unstructured payment information.",
+          "example": "Payment invoice INV-2026-0045"
+        },
+        "payment_method": {
+          "type": "string",
+          "description": "Method or scheme used for the payment.",
+          "example": "SEPA Credit Transfer"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "initiated",
+            "executed",
+            "settled"
+          ],
+          "description": "Status of the payment at the time this credential was issued.",
+          "example": "executed"
+        },
+        "related_statement_id": {
+          "type": "string",
+          "description": "Optional reference to the bank statement in which this payment appears.",
+          "example": "stmt-2026-04-0001"
+        },
+        "related_invoice_id": {
+          "type": "string",
+          "description": "Optional reference to a related invoice or transaction document.",
+          "example": "INV-2026-0045"
+        },
+        "source_format": {
+          "type": "string",
+          "description": "Original source format from which this payment record may have been derived.",
+          "enum": [
+            "MT940",
+            "CAMT",
+            "API",
+            "OTHER"
+          ],
+          "example": "API"
+        },
+        "source_reference": {
+          "type": "string",
+          "description": "Reference to the original bank export or internal source record.",
+          "example": "payment-api-2026-000245"
+        }
+      }
+    }
+  }
+}
