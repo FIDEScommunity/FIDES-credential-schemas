@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FIDEScommunity/FIDES-credential-schemas/refs/heads/main/vct-schemas/verified-email/1/FIDES.verified_email.schema.json",
+  "title": "Verified Email",
+  "description": "This schema represents the claim set of an SD-JWT VC for a verified email address attestation as a single, flat JSON object.",
+  "type": "object",
+  "required": ["vct", "email"],
+  "properties": {
+    "vct": {
+      "type": "string",
+      "const": "urn:org:fides:verified-email:1"
+    },
+    "email": {
+      "type": "string",
+      "format": "idn-email"
+    }
+  },
+  "additionalProperties": false
+}
