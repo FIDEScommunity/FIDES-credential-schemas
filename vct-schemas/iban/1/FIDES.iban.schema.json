@@ -91,10 +91,10 @@
     "account_name",
     "IBAN",
     "account_type",
-    "account_currency"
+    "account_currency",
     "provider_name",
     "bank_identifier",
-    "provider_country"
+    "provider_country",
     "issuing_authority",
     "issuing_authority_id",
     "issuance_date",
